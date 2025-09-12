@@ -36,6 +36,26 @@ app.get("/profile", (req, res) => {
   res.render("profile", { title: "Profile - Petify" });
 });
 
+app.get("/profile/edit-profile", (req, res) => {
+  res.render("edit-profile", { title: "Edit Profile - Petify" });
+});
+
+app.get("/user-profile", (req, res) => {
+  res.render("user-profile", { title: "User profile - Petify" });
+});
+
+app.get("/post", (req, res) => {
+  res.render("post", { title: "Post - Petify" });
+});
+
+app.get("/edit-post", (req, res) => {
+  res.render("edit-post", { title: "Edit Post - Petify" });
+});
+
+app.get("/create-post", (req, res) => {
+  res.render("create-post", { title: "Create Post - Petify" });
+});
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
