@@ -21,7 +21,7 @@ app.use(express.static(path.join(_dirname, "../public")));
 
 // Routes
 app.get("/", (req, res) => {
-  res.render("index", { title: "Home - Petify" });
+  res.render("index", { title: "Home - Petify", currentPage: "home" });
 });
 
 app.get("/login", (req, res) => {
@@ -33,7 +33,7 @@ app.get("/signup", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  res.render("profile", { title: "Profile - Petify" });
+  res.render("profile", { title: "Profile - Petify", currentPage: "profile" });
 });
 
 app.get("/profile/edit-profile", (req, res) => {
@@ -41,7 +41,9 @@ app.get("/profile/edit-profile", (req, res) => {
 });
 
 app.get("/user-profile", (req, res) => {
-  res.render("user-profile", { title: "User profile - Petify" });
+  res.render("user-profile", {
+    title: "User profile - Petify"
+  });
 });
 
 app.get("/post", (req, res) => {
@@ -53,7 +55,10 @@ app.get("/edit-post", (req, res) => {
 });
 
 app.get("/create-post", (req, res) => {
-  res.render("create-post", { title: "Create Post - Petify" });
+  res.render("create-post", {
+    title: "Create Post - Petify",
+    currentPage: "create"
+  });
 });
 
 // Start server
