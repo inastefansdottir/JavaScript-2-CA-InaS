@@ -107,3 +107,7 @@ body {
 .navigation ul li:nth-child(3).active ~ .indicator {
   transform: translateX(calc(80px * 2));
 }
+
+.footer-fix {
+  height: 100px;
+}
