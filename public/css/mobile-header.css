@@ -3,7 +3,14 @@ header {
   justify-content: flex-end;
   align-items: center;
   background: var(--primary-light);
-  padding: 10px 15px;
+  padding: 20px 15px;
+}
+
+.cat-logo {
+  position: absolute;
+  height: 55px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .search-container {
