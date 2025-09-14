@@ -18,13 +18,12 @@ body {
   background-color: var(--primary-light);
 }
 
-/* Tutorial for navigation: https://www.youtube.com/watch?v=ArTVfdHOB-M */
 .navigation {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: 60px;
   background-color: var(--secondary-light);
   display: flex;
   justify-content: center;
@@ -33,14 +32,14 @@ body {
 
 .navigation ul {
   display: flex;
-  width: 210px;
 }
 
 .navigation ul li {
   position: relative;
   list-style: none;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
+  margin: 0 10px;
   z-index: 1;
 }
 
@@ -83,52 +82,28 @@ body {
 
 .navigation ul li.active a .text {
   opacity: 1;
-  transform: translate(-50%, 10px);
+  transform: translate(-50%, 5px);
 }
 
 .indicator {
   position: absolute;
   top: -50%;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
+  margin: 0 10px;
   background-color: var(--primary-dark);
   border-radius: 50%;
-  border: 6px solid var(--primary-light);
   transition: 0.5s;
 }
 
-.indicator::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -22px;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-top-right-radius: 20px;
-  box-shadow: 0px -10px 0 0 var(--primary-light);
-}
-
-.indicator::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -22px;
-  width: 20px;
-  height: 20px;
-  background: transparent;
-  border-top-left-radius: 20px;
-  box-shadow: 0px -10px 0 0 var(--primary-light);
-}
-
 .navigation ul li:nth-child(1).active ~ .indicator {
-  transform: translateX(calc(70px * 0));
+  transform: translateX(calc(80px * 0));
 }
 
 .navigation ul li:nth-child(2).active ~ .indicator {
-  transform: translateX(calc(70px * 1));
+  transform: translateX(calc(80px * 1));
 }
 
 .navigation ul li:nth-child(3).active ~ .indicator {
-  transform: translateX(calc(70px * 2));
+  transform: translateX(calc(80px * 2));
 }

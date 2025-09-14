@@ -7,7 +7,24 @@
     <%- include("components/links") %>
   </head>
   <body>
-    <%- include("components/mobile-header") %> <%-
-    include("components/mobile-navbar") %>
+    <%- include("components/mobile-header") %>
+
+    <article>
+      <div>
+        <img
+          src="/images/placeholder-profile-image.png"
+          alt="profile picture"
+          class="small-profile-icon"
+        />
+        <span class="username">Oreo</span>
+      </div>
+      <img
+        src="/images/placeholder-post-image.jpg"
+        alt="image post"
+        class="image-post"
+      />
+    </article>
+
+    <%- include("components/mobile-navbar") %>
   </body>
 </html>
