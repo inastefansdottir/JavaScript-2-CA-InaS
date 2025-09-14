@@ -4,8 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/login-signup.css" />
   </head>
-  <body>
-    This is the sign up page
+  <body class="dark-background">
+    <header>
+      <img src="/images/petify-logo-light.svg" class="logo" />
+    </header>
+    <main>
+      <h1 class="signup-title">SIGN UP</h1>
+      <form class="signup-form">
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+        />
+        <input type="email" id="email" name="email" placeholder="Email" />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
+        <button type="submit" class="button create-button">
+          Create account
+        </button>
+        <p>Already have an account?</p>
+        <a class="link login-link" href="/login">Log in</a>
+      </form>
+    </main>
   </body>
 </html>
