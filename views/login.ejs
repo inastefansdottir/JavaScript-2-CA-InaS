@@ -4,8 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/login.css" />
   </head>
   <body>
-    this is the login page
+    <header>
+      <img src="/images/petify-logo-dark.svg" class="logo" />
+      <p class="app-description">
+        Connect with pet lovers, share your furry friend’s moments, and discover
+        a community made just for pets and their humans
+      </p>
+    </header>
+    <main>
+      <h1>LOG IN</h1>
+      <form class="login-form">
+        <input type="email" id="email" name="email" placeholder="Email" />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
+        <button type="submit" class="login-button">Log in</button>
+        <span class="hr-lines">OR</span>
+        <p>Don't have an account?</p>
+        <a class="signup-link" href="/signup">Sign up</a>
+      </form>
+    </main>
   </body>
 </html>

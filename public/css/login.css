@@ -1,0 +1,94 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 258px;
+  margin-top: 40px;
+}
+
+.app-description {
+  font-size: 0.8em;
+  width: 258px;
+  text-align: center;
+  margin: 12px 0 40px 0;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--secondary-darker);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.login-form input {
+  background-color: var(--primary-light);
+  border: solid 2px var(--primary-dark);
+  font-size: 0.9em;
+  padding: 9px 17px;
+  border-radius: 30px;
+  color: var(--primary-dark);
+}
+
+.login-form input::placeholder {
+  color: var(--secondary-light);
+}
+
+.login-form input:focus {
+  border: solid 2px var(--accent-color);
+  outline: none;
+}
+
+.login-button {
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+  font-size: 0.9em;
+  font-weight: 700;
+  border: none;
+  padding: 9px 0;
+  border-radius: 30px;
+}
+
+.hr-lines {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  color: var(--secondary-darker);
+  margin: 10px 0;
+}
+
+.hr-lines::before,
+.hr-lines::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 105px;
+  top: 50%;
+  background-color: var(--secondary-darker);
+  border-radius: 50%;
+}
+
+.login-form p,
+.signup-link {
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-form p {
+  color: var(--secondary-darker);
+}
+
+.signup-link {
+  text-decoration: none;
+  color: var(--primary-dark);
+}

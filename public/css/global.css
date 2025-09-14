@@ -1,0 +1,20 @@
+:root {
+  --primary-light: #e5e1f2;
+  --primary-dark: #5f5aa5;
+  --secondary-light: #baaceb;
+  --secondary-darker: #a796e3;
+  --accent-color: #6da90f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Encode Sans", sans-serif;
+  font-weight: 500;
+}
+
+body {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
