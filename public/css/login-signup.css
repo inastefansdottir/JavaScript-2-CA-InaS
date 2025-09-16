@@ -59,7 +59,7 @@ form input:focus {
   border: none;
   padding: 9px 0;
   border-radius: 30px;
-  margin-top: 10px;
+  margin: 10px 0 10px 0;
 }
 
 .hr-lines {
@@ -68,7 +68,7 @@ form input:focus {
   gap: 12px;
   font-weight: 700;
   color: var(--secondary-darker);
-  margin: 10px 0;
+  margin: 0 0 10px 0;
 }
 
 .hr-lines::before,
@@ -120,7 +120,6 @@ form p {
 .create-button {
   background-color: var(--primary-light);
   color: var(--primary-dark);
-  margin-bottom: 20px;
 }
 
 .login-link {
@@ -153,6 +152,6 @@ form p {
   font-size: 14px;
   padding: 20px;
   border-radius: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   text-align: left;
 }

@@ -70,4 +70,8 @@
   color: var(--primary-dark);
   padding: 5px 15px 20px 15px;
   font-weight: 600;
+  width: 100%;
+  overflow-wrap: break-word; /* modern */
+  word-wrap: break-word; /* legacy */
+  word-break: break-word; /* fallback */
 }

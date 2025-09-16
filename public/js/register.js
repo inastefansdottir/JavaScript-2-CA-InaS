@@ -39,11 +39,6 @@ async function onSignupFormSubmit(event) {
   const formData = new FormData(event.target);
   const formFields = Object.fromEntries(formData);
 
-  console.log("Form fields:", formFields);
-  console.log("Name value:", formFields.name);
-  console.log("Email value:", formFields.email);
-  console.log("Password value:", formFields.password);
-
   const errorIcon =
     '<ion-icon name="alert-circle" class="alert-circle"></ion-icon>';
   let hasError = false;

@@ -18,26 +18,30 @@
     </header>
     <main>
       <h1>LOG IN</h1>
-      <form class="login-form" id="loginForm">
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          required
-        />
+      <form class="login-form" id="loginForm" novalidate>
+        <input type="email" id="email" name="email" placeholder="Email" />
+        <p class="input-error" id="emailError"></p>
         <input
           type="password"
           id="password"
           name="password"
           placeholder="Password"
-          required
         />
+        <p class="input-error" id="passwordError"></p>
         <button class="button">Log in</button>
+        <div id="errorMessage"></div>
         <span class="hr-lines">OR</span>
         <p>Don't have an account?</p>
         <a class="link" href="/auth/signup">Sign up</a>
       </form>
     </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
