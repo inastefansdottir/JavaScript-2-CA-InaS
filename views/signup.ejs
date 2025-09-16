@@ -14,35 +14,37 @@
     </header>
     <main>
       <h1 class="signup-title">SIGN UP</h1>
-      <form class="signup-form" id="signupForm">
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Username"
-          required
-          value="Oreo"
-        />
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Email"
-          required
-          value="oreo@stud.noroff.no"
-        />
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          required
-          value="oreo00oreo"
-        />
+      <form class="signup-form" id="signupForm" novalidate>
+        <div>
+          <input type="text" id="name" name="name" placeholder="Username" />
+          <p class="input-error" id="nameError"></p>
+        </div>
+        <div>
+          <input type="email" id="email" name="email" placeholder="Email" />
+          <p class="input-error" id="emailError"></p>
+        </div>
+        <div>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+          />
+          <p class="input-error" id="passwordError"></p>
+        </div>
         <button class="button create-button">Create account</button>
+        <div id="errorMessage"></div>
         <p>Already have an account?</p>
         <a class="link login-link" href="/auth/login">Log in</a>
       </form>
     </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>

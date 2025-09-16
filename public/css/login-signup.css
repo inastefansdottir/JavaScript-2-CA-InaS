@@ -28,17 +28,18 @@ h1 {
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
   width: 258px;
 }
 
 form input {
   background-color: var(--primary-light);
   border: solid 2px var(--primary-dark);
+  width: 100%;
   font-size: 0.9em;
   padding: 9px 17px;
   border-radius: 30px;
   color: var(--primary-dark);
+  margin: 5px 0;
 }
 
 form input::placeholder {
@@ -58,6 +59,7 @@ form input:focus {
   border: none;
   padding: 9px 0;
   border-radius: 30px;
+  margin-top: 10px;
 }
 
 .hr-lines {
@@ -123,4 +125,34 @@ form p {
 
 .login-link {
   color: var(--primary-light);
+  margin-bottom: 60px;
+}
+
+.input-error {
+  color: var(--warning-color);
+  font-size: 12px;
+  font-weight: 500;
+  text-align: right !important;
+}
+
+.error {
+  border: solid 2px var(--warning-color) !important;
+}
+
+.alert-circle {
+  font-size: 20px !important;
+  align-self: self-start;
+}
+
+.error-message {
+  background-color: #f0cede;
+  color: var(--warning-color);
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 14px;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  text-align: left;
 }

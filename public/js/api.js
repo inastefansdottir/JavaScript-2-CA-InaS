@@ -18,7 +18,13 @@ export async function registerUser(userDetails) {
     };
     const response = await fetch(AUTH_REGISTER_URL, fetchOptions);
     const json = await response.json();
-    return json;
+
+    // Return both the status and the body
+    return {
+      ok: response.ok,
+      status: response.status,
+      ...json
+    };
   } catch (error) {
     console.log(error);
   }
