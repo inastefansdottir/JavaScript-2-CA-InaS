@@ -11,70 +11,8 @@
   <body>
     <%- include("components/mobile-header") %>
 
-    <main>
-      <article class="post-thumbnail">
-        <div class="profile-section">
-          <img
-            src="/images/placeholder-post-image.jpg"
-            alt="profile picture"
-            class="small-profile-icon"
-          />
-          <span class="username">Oreo</span>
-        </div>
-        <img
-          src="/images/placeholder-post-image.jpg"
-          alt="image post"
-          class="image-post"
-        />
-        <div class="buttons-wrapper">
-          <button type="button" class="paw-button">
-            <img src="/images/paw-print-unclicked.svg" />
-          </button>
-          <span>1.1K</span>
-          <button type="button" class="comment-button">
-            <ion-icon name="chatbubble-outline"></ion-icon>
-          </button>
-          <span>20</span>
-          <button type="button" class="share-button">
-            <ion-icon name="share-outline"></ion-icon>
-          </button>
-        </div>
-        <p class="description-section">Post description comes here</p>
-      </article>
-
-      <article class="post-thumbnail">
-        <div class="profile-section">
-          <img
-            src="/images/placeholder-post-image.jpg"
-            alt="profile picture"
-            class="small-profile-icon"
-          />
-          <span class="username">Oreo</span>
-        </div>
-        <img
-          src="/images/placeholder-post-image.jpg"
-          alt="image post"
-          class="image-post"
-        />
-        <div class="buttons-wrapper">
-          <button type="button" class="paw-button">
-            <img src="/images/paw-print-unclicked.svg" />
-          </button>
-          <span>1.1K</span>
-          <button type="button" class="comment-button">
-            <ion-icon name="chatbubble-outline"></ion-icon>
-          </button>
-          <span>20</span>
-          <button type="button" class="share-button">
-            <ion-icon name="share-outline"></ion-icon>
-          </button>
-        </div>
-        <p class="description-section">Post description comes here</p>
-      </article>
-
-      <div class="footer-fix"></div>
-    </main>
-
+    <main id="displayContainer"></main>
+    <div class="footer-fix"></div>
     <%- include("components/mobile-navbar") %>
   </body>
 </html>

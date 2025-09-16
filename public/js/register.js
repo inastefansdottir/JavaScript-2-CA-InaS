@@ -1,4 +1,7 @@
+import { redirectLoggedIn } from "./auth.js";
 import { registerUser } from "./api.js";
+
+redirectLoggedIn();
 
 const signupForm = document.getElementById("signupForm");
 

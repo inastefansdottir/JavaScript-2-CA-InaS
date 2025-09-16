@@ -1,6 +1,12 @@
+.divider {
+  background-color: var(--secondary-light);
+  height: 1px;
+  display: none;
+}
+
 .profile-section {
   display: flex;
-  padding: 5px 15px;
+  padding: 15px 15px 10px 15px;
   align-items: center;
   gap: 10px;
 }
