@@ -73,3 +73,29 @@ export async function fetchPosts() {
     console.log(error);
   }
 }
+
+export async function getPostById(postId) {
+  try {
+    const accessToken = getFromLocalStorage("accessToken");
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+    const response = await fetch(
+      `${API_BASE_URL}/social/posts/${postId}?_author=true&_comments=true&_reactions=true`,
+      fetchOptions
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to fetch post");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.log("Error in getPostById", error);
+  }
+}

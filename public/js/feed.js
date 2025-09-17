@@ -28,7 +28,7 @@ function generatePosts(posts) {
                     <img src="/images/paw-print-unclicked.svg" />
                 </button>
                 <span>${post._count?.reactions}</span>
-                <a href="/post/?id=${post.id}&name=${post.author?.name}" class="comment-button">
+                <a href="/posts/${post.id}" class="comment-button">
                     <ion-icon name="chatbubble-outline"></ion-icon>
                 </a>
                 <span>${post._count?.comments}</span>
@@ -36,7 +36,7 @@ function generatePosts(posts) {
                     <ion-icon name="share-outline"></ion-icon>
                 </button>
             </div>
-            <p class="description-section">${post.body}</p>
+            <p class="description-section"><span class="description-name">${post.author?.name}:</span> ${post.body}</p>
         </article>
         `;
 

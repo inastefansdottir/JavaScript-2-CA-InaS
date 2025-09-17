@@ -1,8 +1,10 @@
 import express from "express";
+
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.status(200).render("post", { title: "Post - Petify" });
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  res.status(200).render("post", { postId: id, title: "Post - Petify" });
 });
 
 router.get("/edit", (req, res) => {

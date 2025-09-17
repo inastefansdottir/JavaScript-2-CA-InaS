@@ -11,6 +11,14 @@
   gap: 10px;
 }
 
+#backButton {
+  cursor: pointer;
+}
+
+.arrow-styling {
+  font-size: 25px;
+}
+
 .small-profile-icon {
   width: 40px;
   height: 40px;
@@ -64,6 +72,10 @@
 
 .share-button {
   margin-left: auto;
+}
+
+.description-name {
+  font-weight: 700;
 }
 
 .description-section {
