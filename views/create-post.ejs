@@ -4,10 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/create-post.css" />
     <%- include("components/links") %>
   </head>
   <body>
-    <%- include("components/mobile-header") %> <%-
-    include("components/mobile-navbar") %>
+    <%- include("components/mobile-header") %>
+
+    <main>
+      <h1 class="page-title">Create Post</h1>
+
+      <form id="form" class="form">
+        <div class="input-wrapper">
+          <label for="image" class="label-styling">Image URL:</label>
+          <input type="url" id="image" name="image" class="input-styling" />
+        </div>
+
+        <div class="input-wrapper">
+          <label for="alt" class="label-styling">Alt Text:</label>
+          <input type="text" id="alt" name="alt" class="input-styling" />
+        </div>
+
+        <div class="input-wrapper">
+          <div class="char-wrapper">
+            <label for="body" class="label-styling">Description:</label>
+            <div id="bodyCounter" class="char-counter">100/1000</div>
+          </div>
+          <textarea
+            id="body"
+            name="body"
+            class="input-styling body-input"
+            rows="15"
+          ></textarea>
+          <p class="input-error" id="bodyError"></p>
+        </div>
+
+        <button type="submit" class="button">Share</button>
+      </form>
+
+      <div class="bottom-spacing"></div>
+    </main>
+
+    <%- include("components/mobile-navbar") %>
   </body>
 </html>
