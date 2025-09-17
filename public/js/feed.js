@@ -1,5 +1,6 @@
 import { protectPage } from "./auth.js";
 import { fetchPosts } from "./api.js";
+import { initPawButton } from "./paw-button.js";
 
 protectPage();
 
@@ -40,8 +41,14 @@ function generatePosts(posts) {
         </article>
         `;
 
-    displayContainer.innerHTML += thumbnailHtml;
-    console.log(displayContainer);
+    displayContainer.insertAdjacentHTML("beforeend", thumbnailHtml);
+
+    // Select the button and count span for this post
+    const postElement = displayContainer.lastElementChild;
+    const likeButton = postElement.querySelector(".paw-button");
+    const likeCountSpan = likeButton.nextElementSibling;
+
+    initPawButton(likeButton, likeCountSpan, post.id, post.reactions);
   });
 }
 
