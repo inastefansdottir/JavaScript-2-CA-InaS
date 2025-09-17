@@ -9,3 +9,7 @@ export function getFromLocalStorage(key) {
 export function saveUser(username) {
   localStorage.setItem("username", username);
 }
+
+export function getUser() {
+  return localStorage.getItem("username");
+}

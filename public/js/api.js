@@ -3,7 +3,7 @@ import { addToLocalStorage, getFromLocalStorage } from "./utils.js";
 const API_BASE_URL = "https://v2.api.noroff.dev";
 const AUTH_REGISTER_URL = `${API_BASE_URL}/auth/register`;
 const AUTH_LOGIN_URL = `${API_BASE_URL}/auth/login`;
-const ALL_POSTS_URL = `${API_BASE_URL}/social/posts`;
+const POSTS_URL = `${API_BASE_URL}/social/posts`;
 
 const NOROFF_API_KEY = "d7e6b3d7-dfed-4144-a72f-17de3a3e8a1c";
 
@@ -64,7 +64,7 @@ export async function fetchPosts() {
       }
     };
     const response = await fetch(
-      `${ALL_POSTS_URL}?_author=true&_comments=true&_reactions=true`,
+      `${POSTS_URL}?_author=true&_comments=true&_reactions=true`,
       fetchOptions
     );
     const json = await response.json();
@@ -84,7 +84,7 @@ export async function getPostById(postId) {
       }
     };
     const response = await fetch(
-      `${API_BASE_URL}/social/posts/${postId}?_author=true&_comments=true&_reactions=true`,
+      `${POSTS_URL}/${postId}?_author=true&_comments=true&_reactions=true`,
       fetchOptions
     );
 
@@ -97,5 +97,33 @@ export async function getPostById(postId) {
     return json.data;
   } catch (error) {
     console.log("Error in getPostById", error);
+  }
+}
+
+export async function toggleReaction(postId, symbol) {
+  try {
+    const accessToken = getFromLocalStorage("accessToken");
+    console.log("Access token:", accessToken);
+    const response = await fetch(
+      `${POSTS_URL}/${postId}/react/${encodeURIComponent(symbol)}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "X-Noroff-API-Key": NOROFF_API_KEY
+        }
+      }
+    );
+    const json = await response.json();
+
+    console.log(`${POSTS_URL}/${postId}/react/${encodeURIComponent(symbol)}`);
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to fetch post");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error toggling reaction:", error);
   }
 }

@@ -1,4 +1,5 @@
-import { getPostById } from "./api.js";
+import { getPostById, toggleReaction } from "./api.js";
+import { getUser } from "./utils.js";
 import { protectPage } from "./auth.js";
 
 protectPage();
@@ -71,6 +72,44 @@ async function loadPost(postId) {
     console.log(displayContainer);
 
     backButton();
+
+    const likeButton = document.querySelector(".paw-button");
+    const likeCountSpan = likeButton.nextElementSibling;
+    const currentUser = getUser();
+
+    // Total reactions (all symbols)
+    let totalReactions = post.reactions.reduce((sum, r) => sum + r.count, 0);
+
+    let pawReaction = post.reactions.find(r => r.symbol === "🐾");
+    let liked = pawReaction && pawReaction.reactors.includes(currentUser);
+
+    if (liked) {
+      likeButton.innerHTML = `<img src="/images/paw-print-clicked.svg" />`;
+    }
+    likeCountSpan.textContent = totalReactions;
+
+    likeButton.addEventListener("click", async e => {
+      e.preventDefault();
+
+      // Call API to toggle reaction
+      const result = await toggleReaction(postId, "🐾"); // Paw symbol
+
+      // Always refresh pawReaction from server response
+      totalReactions = result.reactions.reduce((sum, r) => sum + r.count, 0);
+      pawReaction = result.reactions.find(r => r.symbol === "🐾");
+
+      // Update button state
+      liked = pawReaction && pawReaction?.reactors.includes(currentUser);
+
+      likeButton.innerHTML = liked
+        ? `<img src="/images/paw-print-clicked.svg" />`
+        : `<img src="/images/paw-print-unclicked.svg" />`;
+
+      // Update count from API
+      likeCountSpan.textContent = totalReactions;
+    });
+
+    console.log(currentUser, post.reactions);
 
     // Render each comment one by one
     const commentsSection = document.getElementById("commentsSection");

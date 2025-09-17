@@ -1,4 +1,5 @@
 import { redirectLoggedIn } from "./auth.js";
+import { saveUser, addToLocalStorage } from "./utils.js";
 import { loginUser } from "./api.js";
 
 redirectLoggedIn();
@@ -77,6 +78,13 @@ async function onLoginFormSubmit(event) {
     const accessToken = response?.data?.accessToken;
 
     if (accessToken) {
+      // Save token
+      addToLocalStorage("accessToken", accessToken);
+
+      // Save username from the API response
+      const username = response.data.name;
+      saveUser(username);
+
       window.location.href = "/";
     }
   } catch (error) {
