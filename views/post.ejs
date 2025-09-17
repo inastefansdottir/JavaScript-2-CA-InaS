@@ -9,8 +9,11 @@
     <script type="module" src="/js/loadPosts.js"></script>
   </head>
   <body>
-    <main id="displayContainer" data-post-id="<%= postId %>"></main>
+    <main>
+      <div id="displayContainer" data-post-id="<%= postId %>"></div>
 
+      <div id="commentsSection" class="comment-section"></div>
+    </main>
     <script
       type="module"
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"

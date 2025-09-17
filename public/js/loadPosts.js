@@ -15,6 +15,7 @@ if (!postId) {
 async function loadPost(postId) {
   try {
     const post = await getPostById(postId);
+    console.log(post);
 
     if (!post) {
       throw new Error("Post not found");
@@ -32,7 +33,7 @@ async function loadPost(postId) {
                     alt="profile picture"
                     class="small-profile-icon"
                 />
-                <span class="username">${post.author?.name}</span>
+                <strong class="username">${post.author?.name}</strong>
             </div>
             <img
                 src="${post.media?.url}"
@@ -52,26 +53,62 @@ async function loadPost(postId) {
                     <ion-icon name="share-outline"></ion-icon>
                 </button>
             </div>
-            <p class="description-section"><span class="description-name">${
-              post.author?.name
-            }:</span> ${post.body}</p>
+            <div class="description-wrapper">
+              <img
+                src="${post.author?.avatar?.url}"
+                alt="profile picture"
+                class="small-profile-icon align-self"
+              />
+              <div class="text-wrapper">
+                <strong class="description-name">${post.author?.name}</strong> 
+                <p class="body-text">${post.body}</p>
+              </div>
+            </div>
         </article>
         `;
 
     displayContainer.innerHTML += postHtml;
     console.log(displayContainer);
 
-    // Event listener for back button
-    const backButton = document.getElementById("backButton");
-    if (backButton) {
-      backButton.addEventListener("click", e => {
-        e.preventDefault();
-        window.history.back(); // go back to previous page
+    backButton();
+
+    // Render each comment one by one
+    const commentsSection = document.getElementById("commentsSection");
+
+    if (post.comments && post.comments.length > 0) {
+      post.comments.forEach(comment => {
+        const commentElement = document.createElement("div");
+        commentElement.classList.add("comment");
+
+        commentElement.innerHTML = `
+            <img
+              src="${comment.author?.avatar?.url}"
+              alt="user profile picture"
+              class="small-profile-icon align-self"
+            />
+            <div class="text-wrapper">
+              <strong class="description-name">${comment.author?.name}</strong> 
+              <p class="body-text">${comment.body}</p>
+            </div>
+        `;
+
+        commentsSection.appendChild(commentElement);
       });
     }
   } catch (error) {
     console.error("Error loading post:", error);
     displayContainer.innerHTML =
       "<p>Something went wrong while loading this post.</p>";
+  }
+}
+
+function backButton() {
+  // Event listener for back button
+  const backButton = document.getElementById("backButton");
+  if (backButton) {
+    backButton.addEventListener("click", e => {
+      e.preventDefault();
+      window.history.back(); // go back to previous page
+    });
   }
 }

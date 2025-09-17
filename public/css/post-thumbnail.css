@@ -87,3 +87,27 @@
   word-wrap: break-word; /* legacy */
   word-break: break-word; /* fallback */
 }
+
+/* Comments section */
+.description-wrapper,
+.comment {
+  display: flex;
+  padding: 15px 15px;
+  gap: 15px;
+  align-items: center;
+}
+
+.description-wrapper {
+  padding: 10px 15px 15px 15px;
+}
+
+.text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.9em;
+}
+
+.align-self {
+  align-self: self-start;
+}
