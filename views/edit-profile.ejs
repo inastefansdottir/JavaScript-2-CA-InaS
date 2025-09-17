@@ -4,8 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/edit-profile.css" />
+    <%- include("components/links") %>
   </head>
   <body>
-    This is the edit profile page
+    <%- include("components/mobile-header") %>
+
+    <main>
+      <h1 class="title">Edit Profile</h1>
+      <img
+        src="/images/placeholder-post-image.jpg"
+        alt="Profile picture"
+        class="profile-picture"
+      />
+      <button type="button" class="button change-photo-btn">
+        Change photo
+      </button>
+      <div class="account-info">
+        <span class="bold">Username</span>
+        <span class="value-styling" id="username">Oreo</span>
+        <div class="hr-line"></div>
+      </div>
+      <div class="account-info">
+        <span class="bold">Email</span>
+        <span class="value-styling" id="username">oreo@stud.noroff.no</span>
+        <div class="hr-line"></div>
+      </div>
+      <button type="button" class="button signout-btn">Sign out</button>
+      <div class="button-wrapper">
+        <a href="/profile" class="button cancel-btn"
+          >Cancel <ion-icon name="close" class="ex"></ion-icon
+        ></a>
+        <button type="button" class="button save-btn">Save</button>
+      </div>
+
+      <div class="bottom-spacing"></div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
