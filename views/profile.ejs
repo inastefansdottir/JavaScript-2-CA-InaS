@@ -4,10 +4,71 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/profile.css" />
     <%- include("components/links") %>
   </head>
   <body>
-    <%- include("components/mobile-header") %> <%-
-    include("components/mobile-navbar") %>
+    <%- include("components/mobile-header") %>
+
+    <main>
+      <img
+        src="/images/placeholder-post-image.jpg"
+        alt="Profile picture"
+        class="profile-picture"
+      />
+      <h1 class="username">Oreo</h1>
+      <a class="button edit-profile-button">Edit profile</a>
+
+      <div class="info-section">
+        <div class="align-center">
+          <span class="numbers-styling" id="following-count">1.1K</span>
+          <span class="text-styling">Following</span>
+        </div>
+        <div class="vertical-line"></div>
+        <div class="align-center">
+          <span class="numbers-styling" id="followers-count">100</span>
+          <span class="text-styling">Followers</span>
+        </div>
+        <div class="vertical-line"></div>
+        <div class="align-center padding-right">
+          <span class="numbers-styling" id="posts-count">9</span>
+          <span class="text-styling">Posts</span>
+        </div>
+      </div>
+
+      <div class="posts-container">
+        <a href="#"
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+        <a
+          ><img src="/images/placeholder-post-image.jpg" class="thumbnail"
+        /></a>
+      </div>
+
+      <div class="bottom-spacing"></div>
+    </main>
+
+    <%- include("components/mobile-navbar") %>
   </body>
 </html>

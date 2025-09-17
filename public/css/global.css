@@ -19,3 +19,18 @@ body {
   background-color: var(--primary-light);
   color: var(--primary-dark);
 }
+
+.button {
+  background-color: var(--primary-dark);
+  color: var(--primary-light);
+  font-size: 1em;
+  font-weight: 700;
+  border: none;
+  padding: 9px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.bottom-spacing {
+  margin-bottom: 60px;
+}

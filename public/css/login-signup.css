@@ -52,13 +52,6 @@ form input:focus {
 }
 
 .button {
-  background-color: var(--primary-dark);
-  color: var(--primary-light);
-  font-size: 0.9em;
-  font-weight: 700;
-  border: none;
-  padding: 9px 0;
-  border-radius: 30px;
   margin: 10px 0 10px 0;
 }
 
@@ -82,10 +75,11 @@ form input:focus {
   border-radius: 50%;
 }
 
-form p,
+.form-paragraph,
 .link {
   font-weight: 700;
   text-align: center;
+  margin-top: 10px;
 }
 
 form p {
@@ -130,8 +124,8 @@ form p {
 .input-error {
   color: var(--warning-color);
   font-size: 12px;
-  font-weight: 500;
-  text-align: right !important;
+  font-weight: 600;
+  text-align: right;
 }
 
 .error {
@@ -139,7 +133,7 @@ form p {
 }
 
 .alert-circle {
-  font-size: 20px !important;
+  font-size: 20px;
   align-self: self-start;
 }
 
@@ -150,6 +144,7 @@ form p {
   gap: 5px;
   align-items: center;
   font-size: 14px;
+  font-weight: 700;
   padding: 20px;
   border-radius: 15px;
   margin-bottom: 20px;
