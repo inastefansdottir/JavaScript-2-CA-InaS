@@ -4,6 +4,7 @@ const API_BASE_URL = "https://v2.api.noroff.dev";
 const AUTH_REGISTER_URL = `${API_BASE_URL}/auth/register`;
 const AUTH_LOGIN_URL = `${API_BASE_URL}/auth/login`;
 const POSTS_URL = `${API_BASE_URL}/social/posts`;
+const PROFILE_URL = `${API_BASE_URL}/social/profiles`;
 
 const NOROFF_API_KEY = "d7e6b3d7-dfed-4144-a72f-17de3a3e8a1c";
 
@@ -193,5 +194,47 @@ export async function addComment(postId, comment, replyToId = null) {
     return json.data;
   } catch (error) {
     console.error("Error adding comment:", error);
+  }
+}
+
+export async function getProfile(name) {
+  try {
+    const accessToken = getToken("accessToken");
+    const response = await fetch(`${PROFILE_URL}/${name}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to fetch profile");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error fetching profile data:", error);
+  }
+}
+
+export async function getProfilePosts(name) {
+  try {
+    const accessToken = getToken("accessToken");
+    const response = await fetch(`${PROFILE_URL}/${name}/posts`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to fetch profile posts");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error fetching profile posts:", error);
   }
 }
