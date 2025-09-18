@@ -1,4 +1,4 @@
-import { addToLocalStorage, getFromLocalStorage } from "./utils.js";
+import { saveToken, getToken } from "./utils.js";
 
 const API_BASE_URL = "https://v2.api.noroff.dev";
 const AUTH_REGISTER_URL = `${API_BASE_URL}/auth/register`;
@@ -44,7 +44,7 @@ export async function loginUser(userDetails) {
 
     const accessToken = json.data?.accessToken;
     if (accessToken) {
-      addToLocalStorage("accessToken", accessToken);
+      saveToken("accessToken", accessToken);
     }
 
     return json;
@@ -55,8 +55,7 @@ export async function loginUser(userDetails) {
 
 export async function fetchPosts() {
   try {
-    const accessToken = getFromLocalStorage("accessToken");
-    console.log(accessToken);
+    const accessToken = getToken("accessToken");
     const fetchOptions = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -76,7 +75,7 @@ export async function fetchPosts() {
 
 export async function getPostById(postId) {
   try {
-    const accessToken = getFromLocalStorage("accessToken");
+    const accessToken = getToken("accessToken");
     const fetchOptions = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -100,10 +99,37 @@ export async function getPostById(postId) {
   }
 }
 
+export async function createPost(postData) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "POST",
+      body: JSON.stringify(postData),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+    const response = await fetch(POSTS_URL, fetchOptions);
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.error("Failed to create post:", json);
+      return null; // return null instead of throwing
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error in createPost:", error);
+    return null; // return null on error
+  }
+}
+
 export async function toggleReaction(postId, symbol) {
   try {
-    const accessToken = getFromLocalStorage("accessToken");
-    console.log("Access token:", accessToken);
+    const accessToken = getToken("accessToken");
     const response = await fetch(
       `${POSTS_URL}/${postId}/react/${encodeURIComponent(symbol)}`,
       {
@@ -115,8 +141,6 @@ export async function toggleReaction(postId, symbol) {
       }
     );
     const json = await response.json();
-
-    console.log(`${POSTS_URL}/${postId}/react/${encodeURIComponent(symbol)}`);
 
     if (!response.ok) {
       throw new Error(json.message || "Failed to fetch post");

@@ -1,8 +1,8 @@
-export function addToLocalStorage(key, value) {
+export function saveToken(key, value) {
   localStorage.setItem(key, value);
 }
 
-export function getFromLocalStorage(key) {
+export function getToken(key) {
   return localStorage.getItem(key);
 }
 

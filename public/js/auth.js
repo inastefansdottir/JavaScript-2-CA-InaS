@@ -1,10 +1,10 @@
-import { getFromLocalStorage } from "./utils.js";
+import { getToken } from "./utils.js";
 
 const currentPath = window.location.pathname;
 const publicPages = ["/auth/login", "/auth/signup"];
 
 export function isAuthenticated() {
-  return !!getFromLocalStorage("accessToken");
+  return !!getToken("accessToken");
 }
 
 // Protect all pages except login/signup
