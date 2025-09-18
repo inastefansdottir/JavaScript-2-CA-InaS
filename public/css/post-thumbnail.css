@@ -9,6 +9,7 @@
   padding: 15px 15px 10px 15px;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
 }
 
 #backButton {

@@ -11,9 +11,11 @@ router.get("/edit", (req, res) => {
   res.status(200).render("edit-profile", { title: "Edit Profile - Petify" });
 });
 
-router.get("/user", (req, res) => {
+router.get("/:name", (req, res) => {
+  const name = req.params.name;
   res.status(200).render("user-profile", {
-    title: "User profile - Petify"
+    title: `${name}'s Profile - Petify`,
+    name
   });
 });
 

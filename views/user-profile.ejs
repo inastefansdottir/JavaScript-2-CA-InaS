@@ -4,8 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/profile.css" />
+    <%- include("components/links") %>
+    <script type="module" src="/js/user-profile.js"></script>
   </head>
   <body>
-    This is the user profile page
+    <header class="user-profile-header">
+      <a type="button" id="backButton">
+        <ion-icon name="chevron-back" class="arrow-styling"></ion-icon>
+      </a>
+      <img
+        src="/images/petify-cat-dark.svg"
+        class="cat-logo"
+        alt="Petify logo"
+      />
+    </header>
+
+    <main>
+      <img
+        src=""
+        alt="Profile picture"
+        class="profile-picture"
+        id="profilePicture"
+      />
+      <h1 class="username" id="username"></h1>
+      <button type="button" class="button follow-button" id="followButton">
+        Follow
+      </button>
+
+      <div class="info-section">
+        <div class="align-center">
+          <span class="numbers-styling" id="followingCount"></span>
+          <span class="text-styling">Following</span>
+        </div>
+        <div class="vertical-line"></div>
+        <div class="align-center">
+          <span class="numbers-styling" id="followersCount"></span>
+          <span class="text-styling">Followers</span>
+        </div>
+        <div class="vertical-line"></div>
+        <div class="align-center padding-right">
+          <span class="numbers-styling" id="postsCount"></span>
+          <span class="text-styling">Posts</span>
+        </div>
+      </div>
+
+      <div class="posts-container" id="postsContainer"></div>
+
+      <div class="bottom-spacing"></div>
+    </main>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>
