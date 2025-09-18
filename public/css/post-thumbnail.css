@@ -111,3 +111,41 @@
 .align-self {
   align-self: self-start;
 }
+
+/* Write comment */
+.add-comment-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: var(--secondary-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-comment-form {
+  display: flex;
+  width: 100%;
+  margin: 0px 15px;
+  gap: 10px;
+}
+
+.write-comment {
+  font-size: 0.9em;
+  padding: 8px 15px;
+  border-radius: 20px;
+  width: 100%;
+  border: solid 2px var(--primary-dark);
+  color: var(--primary-dark);
+}
+
+.write-comment::placeholder {
+  color: var(--secondary-darker);
+}
+
+.write-comment:focus {
+  border: solid 2px var(--accent-color);
+  outline: none;
+}

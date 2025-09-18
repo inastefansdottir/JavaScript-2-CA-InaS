@@ -43,8 +43,20 @@ export async function loginUser(userDetails) {
     const json = await response.json();
 
     const accessToken = json.data?.accessToken;
+    const user = json.data;
+
     if (accessToken) {
       saveToken("accessToken", accessToken);
+      if (user) {
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({
+            name: user.name,
+            email: user.email,
+            avatarUrl: user.avatar?.url
+          })
+        );
+      }
     }
 
     return json;
@@ -149,5 +161,37 @@ export async function toggleReaction(postId, symbol) {
     return json.data;
   } catch (error) {
     console.error("Error toggling reaction:", error);
+  }
+}
+
+export async function addComment(postId, comment, replyToId = null) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      },
+      body: JSON.stringify({
+        body: comment,
+        ...(replyToId && { replyToId })
+      })
+    };
+
+    const response = await fetch(
+      `${POSTS_URL}/${postId}/comment`,
+      fetchOptions
+    );
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to add comment");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error adding comment:", error);
   }
 }

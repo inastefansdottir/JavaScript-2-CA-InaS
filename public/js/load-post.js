@@ -1,6 +1,7 @@
 import { getPostById } from "./api.js";
 import { protectPage } from "./auth.js";
 import { initPawButton } from "./paw-button.js";
+import { initCommentForm } from "./comment.js";
 
 protectPage();
 
@@ -49,7 +50,7 @@ async function loadPost(postId) {
                 <div class="comment-button">
                     <ion-icon name="chatbubble-outline"></ion-icon>
                 </div>
-                <span>${post._count?.comments ?? 0}</span>
+                <span id="commentCountSpan">${post._count?.comments ?? 0}</span>
                 <button type="button" class="share-button">
                     <ion-icon name="share-outline"></ion-icon>
                 </button>
@@ -119,8 +120,4 @@ function backButton() {
   }
 }
 
-window.addEventListener("pageshow", event => {
-  if (event.persisted) {
-    window.location.reload();
-  }
-});
+initCommentForm(postId);
