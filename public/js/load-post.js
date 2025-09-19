@@ -2,6 +2,8 @@ import { getPostById } from "./api.js";
 import { protectPage } from "./auth.js";
 import { initPawButton } from "./paw-button.js";
 import { initCommentForm } from "./comment.js";
+import { shareFunction } from "./share.js";
+import { backButton } from "./back-button.js";
 
 protectPage();
 
@@ -79,6 +81,9 @@ async function loadPost(postId) {
 
     initPawButton(likeButton, likeCountSpan, postId, post.reactions);
 
+    const shareButton = document.querySelector(".share-button");
+    shareFunction(shareButton);
+
     // Render each comment one by one
     const commentsSection = document.getElementById("commentsSection");
 
@@ -106,17 +111,6 @@ async function loadPost(postId) {
     console.error("Error loading post:", error);
     displayContainer.innerHTML =
       "<p>Something went wrong while loading this post.</p>";
-  }
-}
-
-function backButton() {
-  // Event listener for back button
-  const backButton = document.getElementById("backButton");
-  if (backButton) {
-    backButton.addEventListener("click", e => {
-      e.preventDefault();
-      window.history.back(); // go back to previous page
-    });
   }
 }
 

@@ -1,6 +1,7 @@
 import { protectPage } from "./auth.js";
 import { fetchPosts } from "./api.js";
 import { initPawButton } from "./paw-button.js";
+import { shareFunction } from "./share.js";
 
 protectPage();
 
@@ -49,6 +50,10 @@ function generatePosts(posts) {
     const likeCountSpan = likeButton.nextElementSibling;
 
     initPawButton(likeButton, likeCountSpan, post.id, post.reactions);
+
+    const shareButton = postElement.querySelector(".share-button");
+    const postUrl = `/posts/${post.id}`;
+    shareFunction(shareButton, postUrl);
   });
 }
 
