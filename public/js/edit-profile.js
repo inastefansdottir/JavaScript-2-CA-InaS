@@ -1,5 +1,8 @@
 import { getProfile, updateAvatar } from "./api.js";
-import { getLoggedInUser } from "./utils.js";
+import { protectPage } from "./auth.js";
+import { getLoggedInUser, clearStorage } from "./utils.js";
+
+protectPage();
 
 const profilePicture = document.getElementById("profilePicture");
 const changeAvatarBtn = document.getElementById("changeAvatarBtn");
@@ -108,4 +111,11 @@ saveBtn.addEventListener("click", async () => {
   } catch (error) {
     console.error("Error saving profile:", error);
   }
+});
+
+// Sign out button
+signoutBtn.addEventListener("click", e => {
+  e.preventDefault();
+  clearStorage();
+  location.href = "/auth/login";
 });

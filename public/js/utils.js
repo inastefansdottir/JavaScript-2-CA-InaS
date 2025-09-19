@@ -25,3 +25,7 @@ export function getLoggedInUser() {
     return null;
   }
 }
+
+export function clearStorage() {
+  localStorage.clear();
+}

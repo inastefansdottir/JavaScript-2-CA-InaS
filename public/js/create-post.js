@@ -1,5 +1,8 @@
+import { protectPage } from "./auth.js";
 import { createPost } from "./api.js";
 import { getUser } from "./utils.js";
+
+protectPage();
 
 const createForm = document.getElementById("form");
 
