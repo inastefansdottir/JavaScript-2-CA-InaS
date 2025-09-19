@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/edit-profile.css" />
     <%- include("components/links") %>
+    <script type="module" src="/js/edit-profile.js"></script>
   </head>
   <body>
     <%- include("components/mobile-header") %>
@@ -13,29 +14,36 @@
     <main>
       <h1 class="title">Edit Profile</h1>
       <img
-        src="/images/placeholder-post-image.jpg"
+        src=""
         alt="Profile picture"
         class="profile-picture"
+        id="profilePicture"
       />
-      <button type="button" class="button change-photo-btn">
+      <button
+        type="button"
+        class="button change-photo-btn"
+        id="changeAvatarBtn"
+      >
         Change photo
       </button>
       <div class="account-info">
         <span class="bold">Username</span>
-        <span class="value-styling" id="username">Oreo</span>
+        <span class="value-styling" id="username"></span>
         <div class="hr-line"></div>
       </div>
       <div class="account-info">
         <span class="bold">Email</span>
-        <span class="value-styling" id="username">oreo@stud.noroff.no</span>
+        <span class="value-styling" id="email"></span>
         <div class="hr-line"></div>
       </div>
-      <button type="button" class="button signout-btn">Sign out</button>
+      <button type="button" class="button signout-btn" id="signoutBtn">
+        Sign out
+      </button>
       <div class="button-wrapper">
         <a href="/profile" class="button cancel-btn"
           >Cancel <ion-icon name="close" class="ex"></ion-icon
         ></a>
-        <button type="button" class="button save-btn">Save</button>
+        <button type="button" class="button save-btn" id="saveBtn">Save</button>
       </div>
 
       <div class="bottom-spacing"></div>
