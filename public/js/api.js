@@ -238,3 +238,34 @@ export async function getProfilePosts(name) {
     console.error("Error fetching profile posts:", error);
   }
 }
+
+export async function updateAvatar(name, imageUrl) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      },
+      body: JSON.stringify({
+        avatar: {
+          url: imageUrl,
+          alt: `${name}'s profile picture`
+        }
+      })
+    };
+
+    const response = await fetch(`${PROFILE_URL}/${name}`, fetchOptions);
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to update avatar");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error updating avatar:", error);
+  }
+}
