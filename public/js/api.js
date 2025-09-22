@@ -269,3 +269,80 @@ export async function updateAvatar(name, imageUrl) {
     console.error("Error updating avatar:", error);
   }
 }
+
+export async function updatePostDescription(postId, bodytext) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      },
+      body: JSON.stringify({ body: bodytext })
+    };
+
+    const response = await fetch(`${POSTS_URL}/${postId}`, fetchOptions);
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to update post");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error updating post:", error);
+  }
+}
+
+export async function deletePost(postId) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+
+    const response = await fetch(`${POSTS_URL}/${postId}`, fetchOptions);
+
+    if (!response.ok) {
+      throw new Error("Failed to delete post");
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    return false;
+  }
+}
+
+export async function deleteComment(postId, commentId) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+
+    const response = await fetch(
+      `${POSTS_URL}/${postId}/comment/${commentId}`,
+      fetchOptions
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to delete comment");
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+    return false;
+  }
+}

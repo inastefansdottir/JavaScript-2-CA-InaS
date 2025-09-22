@@ -89,6 +89,18 @@
   word-break: break-word; /* fallback */
 }
 
+.edit-icon {
+  color: var(--primary-dark);
+  font-size: 30px;
+}
+
+#editButton {
+  display: none;
+  margin-left: auto;
+  margin-right: 0;
+  cursor: pointer;
+}
+
 /* Comments section */
 .description-wrapper,
 .comment {

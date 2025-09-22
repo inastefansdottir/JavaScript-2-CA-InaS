@@ -11,7 +11,6 @@ const postsContainer = document.getElementById("postsContainer");
 export async function initProfileData(name) {
   try {
     const profile = await getProfile(name);
-    console.log(profile);
 
     profilePicture.src =
       profile.avatar?.url || "/images/placeholder-profile-image.png";
@@ -29,7 +28,25 @@ export function generateUserPosts(posts) {
   posts.forEach(post => {
     const postHtml = `
         <a href="/posts/${post.id}"
-          ><img src="${post.media?.url}" class="thumbnail"
+          ><img src="${post.media?.url || "/images/default-image.png"}"
+          alt="${post.media?.alt || "post image"}"
+          class="thumbnail"
+          onerror="this.onerror=null; this.src='/images/default-image.png';"
+        />
+        `;
+
+    postsContainer.insertAdjacentHTML("beforeend", postHtml);
+  });
+}
+
+export function generateUserEditPosts(posts) {
+  posts.forEach(post => {
+    const postHtml = `
+        <a href="/posts/edit/${post.id}"
+          ><img src="${post.media?.url || "/images/default-image.png"}"
+          alt="${post.media?.alt || "post image"}"
+          class="thumbnail"
+          onerror="this.onerror=null; this.src='/images/default-image.png';"
         />
         `;
 

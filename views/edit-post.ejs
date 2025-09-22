@@ -4,8 +4,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="stylesheet" href="/css/post-thumbnail.css" />
+    <link rel="stylesheet" href="/css/edit-post.css" />
+    <script type="module" src="/js/edit-post.js"></script>
   </head>
   <body>
-    This is the edit post page
+    <main>
+      <div id="displayContainer" data-post-id="<%= postId %>"></div>
+
+      <div id="commentsSection" class="comment-section"></div>
+
+      <div class="bottom-spacing"></div>
+    </main>
+    <footer class="add-comment-section">
+      <a href="/profile" class="button cancel-btn"
+        >Cancel <ion-icon name="close" class="ex"></ion-icon
+      ></a>
+      <button type="submit" class="button save-button" id="postBtn">
+        Save
+      </button>
+    </footer>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
   </body>
 </html>

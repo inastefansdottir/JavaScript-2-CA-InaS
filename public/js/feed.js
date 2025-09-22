@@ -21,9 +21,10 @@ function generatePosts(posts) {
                 <span class="username">${post.author?.name}</span>
             </a>
             <img
-                src="${post.media?.url}"
-                alt="${post.media?.alt}"
+                src="${post.media?.url || "/images/default-image.png"}"
+                alt="${post.media?.alt || "post image"}"
                 class="image-post"
+                onerror="this.onerror=null; this.src='/images/default-image.png';"
             />
             <div class="buttons-wrapper">
                 <button type="button" class="paw-button">
@@ -38,7 +39,9 @@ function generatePosts(posts) {
                     <ion-icon name="share-outline"></ion-icon>
                 </button>
             </div>
-            <p class="description-section"><span class="description-name">${post.author?.name}:</span> ${post.body}</p>
+            <p class="description-section"><span class="description-name">${
+              post.author?.name
+            }:</span> ${post.body}</p>
         </article>
         `;
 

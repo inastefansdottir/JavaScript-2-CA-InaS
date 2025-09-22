@@ -1,10 +1,11 @@
-import { getPostById } from "./api.js";
+import {
+  getPostById,
+  deletePost,
+  updatePostDescription,
+  deleteComment
+} from "./api.js";
 import { protectPage } from "./auth.js";
-import { initPawButton } from "./paw-button.js";
-import { initCommentForm } from "./comment.js";
-import { shareFunction } from "./share.js";
 import { backButton } from "./back-button.js";
-import { getLoggedInUser } from "./utils.js";
 
 protectPage();
 
@@ -12,7 +13,7 @@ let displayContainer = document.getElementById("displayContainer");
 const postId = displayContainer.dataset.postId;
 
 if (!postId) {
-  displayContainer.innerHTML = "<p>Missing author name or post ID in URL.</p>";
+  displayContainer.innerHTML = "<p>Missing post ID in URL.</p>";
 } else {
   loadPost(postId);
 }
@@ -20,7 +21,6 @@ if (!postId) {
 async function loadPost(postId) {
   try {
     const post = await getPostById(postId);
-    console.log(post);
 
     if (!post) {
       throw new Error("Post not found");
@@ -39,9 +39,9 @@ async function loadPost(postId) {
                     class="small-profile-icon"
                 />
                 <strong class="username">${post.author?.name}</strong>
-                <a type="button" href="/posts/edit/${post.id}" id="editButton">
-                    <ion-icon name="create-outline" class="edit-icon"></ion-icon>
-                </a>
+                <button type="button" class="delete-button" id="deletePostBtn">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </button>
             </div>
             <img
                 src="${post.media?.url || "/images/default-image.png"}"
@@ -49,52 +49,48 @@ async function loadPost(postId) {
                 class="image-post"
                 onerror="this.onerror=null; this.src='/images/default-image.png';"
             />
-            <div class="buttons-wrapper">
-                <button type="button" class="paw-button">
-                    <img src="/images/paw-print-unclicked.svg" />
-                </button>
-                <span>${post._count?.reactions ?? 0}</span>
-                <div class="comment-button">
-                    <ion-icon name="chatbubble-outline"></ion-icon>
-                </div>
-                <span id="commentCountSpan">${post._count?.comments ?? 0}</span>
-                <button type="button" class="share-button">
-                    <ion-icon name="share-outline"></ion-icon>
-                </button>
-            </div>
-            <div class="description-wrapper">
-              <img
-                src="${post.author?.avatar?.url}"
-                alt="profile picture"
-                class="small-profile-icon align-self"
-              />
-              <div class="text-wrapper">
-                <strong class="description-name">${post.author?.name}</strong> 
-                <p class="body-text">${post.body}</p>
-              </div>
-            </div>
+            <form class="description-form">
+                <label for="body">Edit Description</label>
+                <textarea
+                    id="body"
+                    name="body"
+                    class="input-styling"
+                    rows="5">${post.body || ""}</textarea>  
+            </form>
         </article>
         `;
 
     displayContainer.innerHTML += postHtml;
-    console.log(displayContainer);
-
-    // Only show edit button if logged in user is the author
-    const profile = getLoggedInUser();
-    if (profile.name === post.author?.name) {
-      const editButton = document.getElementById("editButton");
-      editButton.style.display = "block";
-    }
+    console.log(post);
 
     backButton();
 
-    const likeButton = document.querySelector(".paw-button");
-    const likeCountSpan = likeButton.nextElementSibling;
+    // Delete post
+    const deleteBtn = document.getElementById("deletePostBtn");
 
-    initPawButton(likeButton, likeCountSpan, postId, post.reactions);
+    deleteBtn.addEventListener("click", async () => {
+      if (confirm("Are you sure you want to delete this post?")) {
+        const success = await deletePost(postId);
+        if (success) {
+          alert("Post deleted!");
+          window.location.href = "/profile";
+        }
+      }
+    });
 
-    const shareButton = document.querySelector(".share-button");
-    shareFunction(shareButton);
+    // Save description
+    const saveBtn = document.getElementById("postBtn");
+
+    saveBtn.addEventListener("click", async () => {
+      const newBody = document.getElementById("body").value.trim();
+      if (!newBody) return alert("Description cannot be empty");
+
+      const updated = await updatePostDescription(postId, newBody);
+      if (updated) {
+        alert("Post updated!");
+        window.location.href = `/posts/${postId}`;
+      }
+    });
 
     // Render each comment one by one
     const commentsSection = document.getElementById("commentsSection");
@@ -114,9 +110,25 @@ async function loadPost(postId) {
               <strong class="description-name">${comment.author?.name}</strong> 
               <p class="body-text">${comment.body}</p>
             </div>
+            <button data-comment-id="${comment.id}" type="button" class="delete-comment">
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
         `;
 
         commentsSection.appendChild(commentElement);
+      });
+
+      // attach delete handlers
+      commentsSection.querySelectorAll(".delete-comment").forEach(btn => {
+        btn.addEventListener("click", async () => {
+          const commentId = btn.dataset.commentId;
+          if (confirm("Are you sure you want to delte this comment?")) {
+            const success = await deleteComment(postId, commentId);
+            if (success) {
+              btn.closest(".comment").remove(); // remove from DOM
+            }
+          }
+        });
       });
     }
   } catch (error) {
@@ -125,5 +137,3 @@ async function loadPost(postId) {
       "<p>Something went wrong while loading this post.</p>";
   }
 }
-
-initCommentForm(postId);
