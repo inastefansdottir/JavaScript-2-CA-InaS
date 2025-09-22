@@ -125,6 +125,11 @@
   align-self: self-start;
 }
 
+.remove-link-styling {
+  text-decoration: none;
+  color: var(--primary-dark);
+}
+
 /* Write comment */
 .add-comment-section {
   position: fixed;

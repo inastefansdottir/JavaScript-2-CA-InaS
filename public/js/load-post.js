@@ -33,12 +33,14 @@ async function loadPost(postId) {
                 <a type="button" id="backButton">
                     <ion-icon name="chevron-back" class="arrow-styling"></ion-icon>
                 </a>
-                <img
-                    src="${post.author?.avatar?.url}"
-                    alt="profile picture"
-                    class="small-profile-icon"
-                />
-                <strong class="username">${post.author?.name}</strong>
+                <a href="/profile/${post.author?.name}" class="profile-section">
+                    <img
+                        src="${post.author?.avatar?.url}"
+                        alt="profile picture"
+                        class="small-profile-icon"
+                    />
+                    <span class="username">${post.author?.name}</span>
+                </a>
                 <a type="button" href="/posts/edit/${post.id}" id="editButton">
                     <ion-icon name="create-outline" class="edit-icon"></ion-icon>
                 </a>
@@ -105,13 +107,17 @@ async function loadPost(postId) {
         commentElement.classList.add("comment");
 
         commentElement.innerHTML = `
-            <img
-              src="${comment.author?.avatar?.url}"
-              alt="user profile picture"
-              class="small-profile-icon align-self"
-            />
+            <a href="/profile/${comment.author.name}">
+              <img
+                src="${comment.author?.avatar?.url}"
+                alt="user profile picture"
+                class="small-profile-icon align-self"
+              />
+            </a>
             <div class="text-wrapper">
-              <strong class="description-name">${comment.author?.name}</strong> 
+              <a href="/profile/${comment.author.name}" class="remove-link-styling">
+                <strong class="description-name">${comment.author?.name}</strong> 
+              </a>
               <p class="body-text">${comment.body}</p>
             </div>
         `;

@@ -28,11 +28,13 @@ export function initCommentForm(postId) {
         const commentElement = document.createElement("div");
         commentElement.classList.add("comment");
         commentElement.innerHTML = `
+          <a href="/profile/${user.name}">
           <img
             src="${user.avatarUrl}"
             alt="user profile picture"
             class="small-profile-icon align-self"
           />
+          </a>
           <div class="text-wrapper">
             <strong class="description-name">${user.name}</strong> 
             <p class="body-text">${newComment.body}</p>
