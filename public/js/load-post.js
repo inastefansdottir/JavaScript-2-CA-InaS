@@ -133,3 +133,9 @@ async function loadPost(postId) {
 }
 
 initCommentForm(postId);
+
+window.addEventListener("pageshow", event => {
+  if (event.persisted) {
+    window.location.reload();
+  }
+});

@@ -200,7 +200,7 @@ export async function addComment(postId, comment, replyToId = null) {
 export async function getProfile(name) {
   try {
     const accessToken = getToken("accessToken");
-    const response = await fetch(`${PROFILE_URL}/${name}`, {
+    const response = await fetch(`${PROFILE_URL}/${name}?_followers=true`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "X-Noroff-API-Key": NOROFF_API_KEY
@@ -293,6 +293,60 @@ export async function updatePostDescription(postId, bodytext) {
     return json.data;
   } catch (error) {
     console.error("Error updating post:", error);
+  }
+}
+
+export async function followProfile(profileName) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+
+    const response = await fetch(
+      `${PROFILE_URL}/${profileName}/follow?_followers=true`,
+      fetchOptions
+    );
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to follow profile");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error following profile:", error);
+  }
+}
+
+export async function unfollowProfile(profileName) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+
+    const response = await fetch(
+      `${PROFILE_URL}/${profileName}/unfollow?_followers=true`,
+      fetchOptions
+    );
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to unfollow profile");
+    }
+
+    return json.data;
+  } catch (error) {
+    console.error("Error unfollowing profile:", error);
   }
 }
 
