@@ -33,7 +33,9 @@ async function loadPost(postId) {
                 <a type="button" id="backButton">
                     <ion-icon name="chevron-back" class="arrow-styling"></ion-icon>
                 </a>
-                <a href="/profile/${post.author?.name}" class="profile-section">
+                <a href="/profile/${
+                  post.author?.name
+                }" class="profile-section" id="linkToProfile">
                     <img
                         src="${post.author?.avatar?.url}"
                         alt="profile picture"
@@ -83,9 +85,11 @@ async function loadPost(postId) {
 
     // Only show edit button if logged in user is the author
     const profile = getLoggedInUser();
+    const linkToProfile = document.getElementById("linkToProfile");
     if (profile.name === post.author?.name) {
       const editButton = document.getElementById("editButton");
       editButton.style.display = "block";
+      linkToProfile.href = "/profile";
     }
 
     backButton();

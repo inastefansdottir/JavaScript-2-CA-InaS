@@ -2,6 +2,7 @@ import { protectPage } from "./auth.js";
 import { fetchPosts } from "./api.js";
 import { initPawButton } from "./paw-button.js";
 import { shareFunction } from "./share.js";
+import { getLoggedInUser } from "./utils.js";
 
 protectPage();
 
@@ -47,8 +48,15 @@ function generatePosts(posts) {
 
     displayContainer.insertAdjacentHTML("beforeend", thumbnailHtml);
 
-    // Select the button and count span for this post
     const postElement = displayContainer.lastElementChild;
+
+    const profile = getLoggedInUser();
+    const linkToProfile = postElement.querySelector(".profile-section");
+    if (profile.name === post.author?.name) {
+      linkToProfile.href = "/profile";
+    }
+
+    // Select the button and count span for this post
     const likeButton = postElement.querySelector(".paw-button");
     const likeCountSpan = likeButton.nextElementSibling;
 
