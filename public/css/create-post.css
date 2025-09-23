@@ -40,6 +40,11 @@ main {
   border-radius: 20px;
 }
 
+.input-styling:focus {
+  border: solid 2px var(--accent-color);
+  outline: none;
+}
+
 .body-input {
   padding: 10px 15px;
 }
@@ -56,4 +61,32 @@ main {
 .button {
   align-self: center;
   margin-bottom: 60px;
+}
+
+.upload-image-svg {
+  width: 200px;
+}
+
+#uploadImageContainer .upload-image-btn {
+  margin: 15px 0 0 0;
+  background-color: var(--secondary-light);
+}
+
+.upload-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: solid 2px var(--primary-dark);
+  border-radius: 20px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.uploaded-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
 }

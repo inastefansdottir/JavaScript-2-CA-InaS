@@ -15,9 +15,17 @@
       <h1 class="page-title">Create Post</h1>
 
       <form id="form" class="form">
-        <div class="input-wrapper">
-          <label for="image" class="label-styling">Image URL:</label>
-          <input type="url" id="image" name="image" class="input-styling" />
+        <div id="uploadImageContainer">
+          <div class="upload-image-wrapper">
+            <img
+              src="/images/upload-image.svg"
+              alt="Upload an image to publish"
+              class="upload-image-svg"
+            />
+            <button type="button" class="button upload-image-btn">
+              Upload an image
+            </button>
+          </div>
         </div>
 
         <div class="input-wrapper">
@@ -34,7 +42,7 @@
             id="body"
             name="body"
             class="input-styling body-input"
-            rows="15"
+            rows="10"
           ></textarea>
           <p class="input-error" id="bodyError"></p>
         </div>
