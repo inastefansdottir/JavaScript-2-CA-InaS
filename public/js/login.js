@@ -1,5 +1,4 @@
 import { redirectLoggedIn } from "./auth.js";
-import { saveUser, saveToken } from "./utils.js";
 import { loginUser } from "./api.js";
 
 redirectLoggedIn();
@@ -78,17 +77,16 @@ async function onLoginFormSubmit(event) {
     const accessToken = response?.data?.accessToken;
 
     if (accessToken) {
-      // Save token
-      saveToken("accessToken", accessToken);
-
-      // Save username from the API response
-      const username = response.data.name;
-      saveUser(username);
-
       window.location.href = "/";
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
+
+    const errorIcon =
+      '<ion-icon name="alert-circle" class="alert-circle"></ion-icon>';
+    errorMsg.innerHTML = `<p class="error-message">${errorIcon} ${
+      error.message || "Invalid email or password"
+    }</p>`;
   }
 }
 

@@ -17,9 +17,7 @@ export function initCommentForm(postId) {
     const commentText = commentInput.value.trim();
     if (!commentText) return;
 
-    const user = getLoggedInUser() || {
-      name: "Username"
-    };
+    const user = getLoggedInUser();
 
     try {
       const newComment = await addComment(postId, commentText);

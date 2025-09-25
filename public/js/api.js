@@ -1,4 +1,4 @@
-import { saveToken, getToken } from "./utils.js";
+import { saveToken, getToken, saveUser } from "./utils.js";
 
 const API_BASE_URL = "https://v2.api.noroff.dev";
 const AUTH_REGISTER_URL = `${API_BASE_URL}/auth/register`;
@@ -31,11 +31,11 @@ export async function registerUser(userDetails) {
   }
 }
 
-export async function loginUser(userDetails) {
+export async function loginUser({ email, password }) {
   try {
     const fetchOptions = {
       method: "POST",
-      body: JSON.stringify(userDetails),
+      body: JSON.stringify({ email, password }),
       headers: {
         "Content-Type": "application/json"
       }
@@ -43,11 +43,16 @@ export async function loginUser(userDetails) {
     const response = await fetch(AUTH_LOGIN_URL, fetchOptions);
     const json = await response.json();
 
+    if (!response.ok) {
+      throw new Error(json.errors?.[0]?.message || "Invalid email or password");
+    }
+
     const accessToken = json.data?.accessToken;
     const user = json.data;
 
     if (accessToken) {
       saveToken("accessToken", accessToken);
+      saveUser(user.name);
       if (user) {
         localStorage.setItem(
           "loggedInUser",
@@ -58,11 +63,12 @@ export async function loginUser(userDetails) {
           })
         );
       }
+      window.location.href = "/";
     }
 
     return json;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 }
 

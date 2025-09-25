@@ -31,6 +31,9 @@ async function loadProfileData(name) {
 
     username.textContent = profile.name;
     email.textContent = profile.email;
+
+    loggedInUser.avatarUrl = profile.avatar?.url || "";
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
   } catch (error) {
     console.error("Error loading profile information:", error);
   }
@@ -102,6 +105,10 @@ saveBtn.addEventListener("click", async () => {
       if (updatedProfile) {
         profilePicture.src = updatedProfile.avatar.url;
       }
+
+      // 4. Update loggedInUser in localStorage imediately
+      loggedInUser.avatarUrl = updatedProfile.avatar.url;
+      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
     }
 
     alert("Profile saved successfully!");

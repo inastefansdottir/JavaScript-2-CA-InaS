@@ -90,3 +90,18 @@ main {
   object-fit: cover;
   border-radius: 20px;
 }
+
+/* Error */
+.error {
+  border: solid 2px var(--warning-color);
+}
+
+.input-error {
+  font-size: 14px;
+  color: var(--warning-color);
+  text-align: right;
+}
+
+#imageError {
+  margin-top: 7px;
+}

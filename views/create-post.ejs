@@ -26,17 +26,19 @@
               Upload an image
             </button>
           </div>
+          <p class="input-error" id="imageError"></p>
         </div>
 
         <div class="input-wrapper">
           <label for="alt" class="label-styling">Alt Text:</label>
           <input type="text" id="alt" name="alt" class="input-styling" />
+          <p class="input-error" id="altError"></p>
         </div>
 
         <div class="input-wrapper">
           <div class="char-wrapper">
             <label for="body" class="label-styling">Description:</label>
-            <div id="bodyCounter" class="char-counter">0/10000</div>
+            <div id="bodyCounter" class="char-counter">0/5000</div>
           </div>
           <textarea
             id="body"

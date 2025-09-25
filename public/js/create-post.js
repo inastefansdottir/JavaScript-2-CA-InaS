@@ -9,6 +9,10 @@ const altInput = document.getElementById("alt");
 const bodyInput = document.getElementById("body");
 const bodyCounter = document.getElementById("bodyCounter");
 
+const altError = document.getElementById("altError");
+const bodyError = document.getElementById("bodyError");
+const imageError = document.getElementById("imageError");
+
 // Upload container + button
 const uploadImageContainer = document.getElementById("uploadImageContainer");
 const uploadBtn = uploadImageContainer.querySelector(".upload-image-btn");
@@ -35,13 +39,26 @@ fileInput.addEventListener("change", () => {
   // Show preview by replacing container contents
   const previewUrl = URL.createObjectURL(selectedFile);
   uploadImageContainer.innerHTML = `<img src="${previewUrl}" alt="Preview of uploaded image" class="uploaded-image" />`;
+  imageError.innerHTML = ""; // Clear error if user selects an image
 });
 
 // Update body counter on input
 bodyInput.addEventListener("input", () => {
   const length = bodyInput.value.length;
-  bodyCounter.textContent = `${length}/10000`;
+  bodyCounter.textContent = `${length}/5000`;
+  clearFieldError(bodyInput, bodyError);
 });
+
+// Live clearing
+altInput.addEventListener("input", () => {
+  clearFieldError(altInput, altError);
+});
+
+// Clear input error
+function clearFieldError(inputElement, errorElement) {
+  inputElement.classList.remove("error");
+  if (errorElement) errorElement.textContent = "";
+}
 
 // Upload to Cloudinary
 async function uploadToCloudinary(file) {
@@ -70,6 +87,41 @@ async function uploadToCloudinary(file) {
 
 createForm.addEventListener("submit", async e => {
   e.preventDefault();
+
+  // Reset errors
+  imageError.innerHTML = "";
+  altError.textContent = "";
+  bodyError.textContent = "";
+  altInput.classList.remove("error");
+  bodyInput.classList.remove("error");
+
+  let isValid = true;
+
+  // Image validation
+  if (!selectedFile) {
+    imageError.innerHTML = "Image is required.";
+    isValid = false;
+  }
+
+  // Alt text validation
+  if (!altInput.value.trim()) {
+    altError.textContent = "Alt text is required.";
+    altInput.classList.add("error");
+    isValid = false;
+  }
+
+  // Body validation
+  if (!bodyInput.value.trim()) {
+    bodyError.textContent = "Body is required";
+    bodyInput.classList.add("error");
+    isValid = false;
+  } else if (bodyInput.value.length > 5000) {
+    bodyError.textContent = "Body cannot exceed 5000 characters.";
+    bodyInput.classList.add("error");
+    isValid = false;
+  }
+
+  if (!isValid) return; // stop submission if validation failed
 
   const submitBtn = createForm.querySelector("button[type='submit']");
   submitBtn.disabled = true;
