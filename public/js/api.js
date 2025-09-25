@@ -406,3 +406,59 @@ export async function deleteComment(postId, commentId) {
     return false;
   }
 }
+
+export async function searchPosts(query) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+
+    const response = await fetch(
+      `${POSTS_URL}/search?q=${encodeURIComponent(query)}`,
+      fetchOptions
+    );
+
+    const json = await response.json();
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to search posts");
+    }
+
+    return json.data || [];
+  } catch (error) {
+    console.error("Error searching posts:", error);
+    return [];
+  }
+}
+
+export async function searchProfiles(query) {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+
+    const response = await fetch(
+      `${PROFILE_URL}/search?q=${encodeURIComponent(query)}`,
+      fetchOptions
+    );
+
+    const json = await response.json(); // ✅ parse here
+
+    if (!response.ok) {
+      throw new Error(json.message || "Failed to search profiles");
+    }
+
+    return json.data || [];
+  } catch (error) {
+    console.error("Error searching profiles:", error);
+    return [];
+  }
+}

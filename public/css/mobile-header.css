@@ -24,12 +24,12 @@ header {
   border-radius: 20px;
   overflow: hidden;
   transition: width 0.4s ease;
-  width: 32px;
+  width: 40px;
   justify-content: flex-end;
 }
 
 .search-container.open {
-  width: 200px;
+  width: 270px;
 }
 
 .search-input {
@@ -38,7 +38,7 @@ header {
   outline: none;
   background: transparent;
   font-size: 0.8em;
-  padding: 5px 10px;
+  padding: 5px 15px;
   flex: 1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -60,12 +60,62 @@ header {
   cursor: pointer;
   padding: 5px;
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   align-items: center;
 }
 
 .search-outline,
 .arrow {
-  font-size: 1.3em;
+  font-size: 1.5em;
+}
+
+.search-results {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: var(--secondary-light);
+  border-radius: 10px;
+  max-height: 300px;
+  width: 270px;
+  overflow-y: auto;
+  z-index: 20;
+  padding: 10px;
+  margin: 0 15px;
+}
+
+.search-results.hidden {
+  display: none;
+}
+
+.search-item {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.search-item:last-child {
+  border-bottom: none;
+}
+
+.search-item img.profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.search-item img.post-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  margin-right: 10px;
+  object-fit: cover;
+}
+
+.search-username {
+  font-weight: 700;
 }
