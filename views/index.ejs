@@ -9,7 +9,10 @@
     <%- include("components/links") %>
   </head>
   <body>
-    <%- include("components/mobile-header") %>
+    <header>
+      <%- include("components/desktop-side-panel") %><%-
+      include("components/mobile-header") %>
+    </header>
 
     <main id="displayContainer"></main>
     <%- include("components/mobile-navbar") %>

@@ -4,12 +4,21 @@
   display: none;
 }
 
-.profile-section {
+.profile-section-feed,
+.profile-section,
+.profile {
   display: flex;
-  padding: 15px 15px 10px 15px;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
+  gap: 10px;
+}
+
+.profile-section-feed {
+  padding: 15px 15px 10px 15px;
+}
+
+.profile-section {
+  padding: 15px 0 10px 0;
 }
 
 #backButton {

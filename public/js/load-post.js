@@ -35,7 +35,7 @@ async function loadPost(postId) {
                 </a>
                 <a href="/profile/${
                   post.author?.name
-                }" class="profile-section" id="linkToProfile">
+                }" class="profile" id="linkToProfile">
                     <img
                         src="${post.author?.avatar?.url}"
                         alt="profile picture"

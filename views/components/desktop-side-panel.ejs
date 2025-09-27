@@ -1,0 +1,44 @@
+<aside class="desktop-nav">
+  <img src="/images/petify-logo-dark.svg" class="full-logo" alt="Petify logo" />
+  <img src="/images/petify-cat-dark.svg" class="cat-logo" alt="Petify logo" />
+
+  <ul>
+    <li class="desktop-list <%= currentPage === 'home' ? 'current' : '' %>">
+      <a href="/" class="flex"
+        ><ion-icon
+          class="icon home-icon"
+          name="<%= currentPage === 'home' ? 'home' : 'home-outline' %>"
+        ></ion-icon>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li class="desktop-list">
+      <button class="search-button flex">
+        <ion-icon
+          class="icon search-icon"
+          name="search-outline"
+          class="search-outline"
+        ></ion-icon>
+        <span class="text">Search</span>
+      </button>
+    </li>
+    <li class="desktop-list <%= currentPage === 'create' ? 'current' : '' %>">
+      <a href="/posts/create" class="flex">
+        <ion-icon
+          class="icon create-icon"
+          name="<%= currentPage === 'create' ? 'add-circle' : 'add-circle-outline' %>"
+        ></ion-icon>
+        <span class="text">Create</span>
+      </a>
+    </li>
+    <li class="desktop-list <%= currentPage === 'profile' ? 'current' : '' %>">
+      <a href="/profile" class="flex">
+        <ion-icon
+          class="icon profile-icon"
+          name="<%= currentPage === 'profile' ? 'person' : 'person-outline' %>"
+        ></ion-icon>
+        <span class="text">Profile</span>
+      </a>
+    </li>
+  </ul>
+</aside>

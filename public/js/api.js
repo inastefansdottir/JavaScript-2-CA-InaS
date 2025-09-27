@@ -450,7 +450,7 @@ export async function searchProfiles(query) {
       fetchOptions
     );
 
-    const json = await response.json(); // ✅ parse here
+    const json = await response.json();
 
     if (!response.ok) {
       throw new Error(json.message || "Failed to search profiles");

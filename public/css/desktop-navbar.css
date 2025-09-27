@@ -1,0 +1,79 @@
+.desktop-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 220px;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 30px;
+  border-right: solid 1px var(--secondary-light);
+}
+
+.full-logo {
+  display: block;
+  width: 100px;
+  padding-left: 12px;
+}
+
+.cat-logo {
+  display: none;
+}
+
+.search-button {
+  border: none;
+  background-color: inherit;
+}
+
+.search-button .text {
+  font-size: 16px;
+}
+
+.desktop-list.current a .text,
+.desktop-list.current button .text {
+  font-weight: 700;
+}
+
+.desktop-list {
+  list-style: none;
+}
+
+.desktop-list a,
+.desktop-list button {
+  color: var(--primary-dark);
+  text-decoration: none;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.desktop-list .icon {
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 1200px) {
+  .desktop-nav {
+    width: 72px;
+  }
+
+  .cat-logo {
+    display: block;
+    width: 48px;
+  }
+
+  .desktop-list a .text,
+  .desktop-list button .text,
+  .full-logo {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .desktop-nav {
+    display: none;
+  }
+}

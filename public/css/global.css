@@ -20,6 +20,11 @@ body {
   color: var(--primary-dark);
 }
 
+main {
+  max-width: 470px;
+  margin: 0 auto;
+}
+
 .button {
   background-color: var(--primary-dark);
   color: var(--primary-light);

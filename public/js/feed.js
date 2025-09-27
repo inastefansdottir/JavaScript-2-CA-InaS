@@ -13,7 +13,9 @@ function generatePosts(posts) {
     const thumbnailHtml = `
         <article class="post-thumbnail">
             <div class="divider"></div>
-            <a href="/profile/${post.author?.name}" class="profile-section">
+            <a href="/profile/${
+              post.author?.name
+            }" class="profile-section-feed">
                 <img
                     src="${post.author?.avatar?.url}"
                     alt="profile picture"

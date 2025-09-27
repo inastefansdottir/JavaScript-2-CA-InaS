@@ -123,7 +123,7 @@ function renderResults(profiles, posts) {
         <span class="title">${result.title}</span>
       `;
       div.addEventListener("click", () => {
-        window.location.href = `/post/${result.id}`;
+        window.location.href = `/posts/${result.id}`;
       });
     }
 

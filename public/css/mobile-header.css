@@ -1,121 +1,132 @@
-header {
-  position: sticky;
-  top: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background: var(--primary-light);
-  padding: 20px 15px;
-  z-index: 10;
-}
-
-.cat-logo {
-  position: absolute;
-  height: 55px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.search-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: var(--primary-dark);
-  border-radius: 20px;
-  overflow: hidden;
-  transition: width 0.4s ease;
-  width: 40px;
-  justify-content: flex-end;
-}
-
-.search-container.open {
-  width: 270px;
-}
-
-.search-input {
-  color: var(--primary-light);
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 0.8em;
-  padding: 5px 15px;
-  flex: 1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  direction: ltr;
-}
-
-.search-input::placeholder {
-  color: var(--secondary-light);
-}
-
-.search-container.open .search-input {
-  opacity: 1;
-}
-
-.search-button {
-  color: var(--primary-light);
-  border: none;
-  background: none;
-  cursor: pointer;
-  padding: 5px;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  align-items: center;
-}
-
-.search-outline,
-.arrow {
-  font-size: 1.5em;
-}
-
-.search-results {
-  position: absolute;
-  top: 70px;
-  right: 0;
-  background-color: var(--secondary-light);
-  border-radius: 10px;
-  max-height: 300px;
-  width: 270px;
-  overflow-y: auto;
-  z-index: 20;
-  padding: 10px;
-  margin: 0 15px;
-}
-
-.search-results.hidden {
+.mobile-header {
   display: none;
 }
 
-.search-item {
-  display: flex;
-  align-items: center;
-  padding: 8px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
+@media (max-width: 760px) {
+  header {
+    position: sticky;
+    top: 0;
+  }
 
-.search-item:last-child {
-  border-bottom: none;
-}
+  .mobile-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background: var(--primary-light);
+    padding: 20px 15px;
+    border-bottom: solid 1px var(--secondary-light);
+    z-index: 10;
+  }
 
-.search-item img.profile-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  margin-right: 10px;
-  object-fit: cover;
-}
+  .cat-logo {
+    position: absolute;
+    height: 50px;
+    width: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-.search-item img.post-img {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  margin-right: 10px;
-  object-fit: cover;
-}
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: var(--primary-dark);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: width 0.4s ease;
+    width: 40px;
+    justify-content: flex-end;
+  }
 
-.search-username {
-  font-weight: 700;
+  .search-container.open {
+    width: 270px;
+  }
+
+  .search-input {
+    color: var(--primary-light);
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.8em;
+    padding: 5px 15px;
+    flex: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    direction: ltr;
+  }
+
+  .search-input::placeholder {
+    color: var(--secondary-light);
+  }
+
+  .search-container.open .search-input {
+    opacity: 1;
+  }
+
+  .search-button {
+    color: var(--primary-light);
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+  }
+
+  .search-outline,
+  .arrow {
+    font-size: 1.5em;
+  }
+
+  .search-results {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: var(--secondary-light);
+    border-radius: 10px;
+    max-height: 300px;
+    width: 270px;
+    overflow-y: auto;
+    z-index: 20;
+    padding: 10px;
+    margin: 0 15px;
+  }
+
+  .search-results.hidden {
+    display: none;
+  }
+
+  .search-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .search-item:last-child {
+    border-bottom: none;
+  }
+
+  .search-item img.profile-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+
+  .search-item img.post-img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+
+  .search-username {
+    font-weight: 700;
+  }
 }
