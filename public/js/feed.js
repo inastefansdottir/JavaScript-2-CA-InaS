@@ -53,7 +53,7 @@ function generatePosts(posts) {
     const postElement = displayContainer.lastElementChild;
 
     const profile = getLoggedInUser();
-    const linkToProfile = postElement.querySelector(".profile-section");
+    const linkToProfile = postElement.querySelector(".profile-section-feed");
     if (profile.name === post.author?.name) {
       linkToProfile.href = "/profile";
     }

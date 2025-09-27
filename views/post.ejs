@@ -6,13 +6,27 @@
     <title>Document</title>
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/post-thumbnail.css" />
+    <link rel="stylesheet" href="/css/desktop-navbar.css" />
     <script type="module" src="/js/load-post.js"></script>
   </head>
   <body>
+    <header><%- include("components/desktop-side-panel") %></header>
     <main>
       <div id="displayContainer" data-post-id="<%= postId %>"></div>
 
       <div id="commentsSection" class="comment-section"></div>
+      <div class="desktop-add-comment">
+        <form class="add-comment-form" id="addCommentForm">
+          <input
+            type="text"
+            id="writeComment"
+            name="writeComment"
+            class="write-comment"
+            placeholder="Add a comment..."
+          />
+          <button type="submit" class="button" id="postBtn">Post</button>
+        </form>
+      </div>
 
       <div class="bottom-spacing"></div>
     </main>

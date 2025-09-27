@@ -10,6 +10,11 @@ import indexRouter from "../routes/index.js";
 import postRouter from "../routes/post.js";
 import profileRouter from "../routes/profile.js";
 
+app.use((req, res, next) => {
+  res.locals.currentPage = ""; // default to empty
+  next();
+});
+
 // Set EJS as the view engine
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));

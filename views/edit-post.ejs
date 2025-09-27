@@ -7,11 +7,21 @@
     <link rel="stylesheet" href="/css/global.css" />
     <link rel="stylesheet" href="/css/post-thumbnail.css" />
     <link rel="stylesheet" href="/css/edit-post.css" />
+    <link rel="stylesheet" href="/css/desktop-navbar.css" />
     <script type="module" src="/js/edit-post.js"></script>
   </head>
   <body>
+    <header><%- include("components/desktop-side-panel") %></header>
     <main>
       <div id="displayContainer" data-post-id="<%= postId %>"></div>
+      <div class="button-wrapper">
+        <a href="/profile" class="button cancel-btn"
+          >Cancel <ion-icon name="close" class="ex"></ion-icon
+        ></a>
+        <button type="submit" class="button save-button" id="postBtn">
+          Save
+        </button>
+      </div>
 
       <div id="commentsSection" class="comment-section"></div>
 

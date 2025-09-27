@@ -9,15 +9,18 @@
     <script type="module" src="/js/user-profile.js"></script>
   </head>
   <body>
-    <header class="user-profile-header">
-      <a type="button" id="backButton">
-        <ion-icon name="chevron-back" class="arrow-styling"></ion-icon>
-      </a>
-      <img
-        src="/images/petify-cat-dark.svg"
-        class="cat-logo"
-        alt="Petify logo"
-      />
+    <header>
+      <%- include("components/desktop-side-panel") %>
+      <div class="user-profile-header">
+        <a type="button" id="backButton">
+          <ion-icon name="chevron-back" class="arrow-styling"></ion-icon>
+        </a>
+        <img
+          src="/images/petify-cat-dark.svg"
+          class="cat-logo"
+          alt="Petify logo"
+        />
+      </div>
     </header>
 
     <main>

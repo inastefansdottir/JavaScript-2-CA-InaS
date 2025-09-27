@@ -13,12 +13,9 @@
   gap: 10px;
 }
 
-.profile-section-feed {
-  padding: 15px 15px 10px 15px;
-}
-
+.profile-section-feed,
 .profile-section {
-  padding: 15px 0 10px 0;
+  padding: 15px 15px 10px 15px;
 }
 
 #backButton {
@@ -140,22 +137,17 @@
 }
 
 /* Write comment */
+.desktop-add-comment {
+  margin: 20px 0;
+}
+
 .add-comment-section {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 60px;
-  background-color: var(--secondary-light);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none;
 }
 
 .add-comment-form {
   display: flex;
   width: 100%;
-  margin: 0px 15px;
   gap: 10px;
 }
 
@@ -175,4 +167,26 @@
 .write-comment:focus {
   border: solid 2px var(--accent-color);
   outline: none;
+}
+
+@media (max-width: 570px) {
+  .desktop-add-comment {
+    display: none;
+  }
+
+  .add-comment-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: var(--secondary-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .add-comment-form {
+    margin: 0 15px;
+  }
 }

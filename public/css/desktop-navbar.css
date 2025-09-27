@@ -3,13 +3,14 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 220px;
+  width: 330px;
   padding: 20px 12px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 30px;
   border-right: solid 1px var(--secondary-light);
+  background-color: var(--primary-light);
 }
 
 .full-logo {
@@ -53,6 +54,12 @@
 .desktop-list .icon {
   width: 24px;
   height: 24px;
+}
+
+@media (max-width: 1900px) {
+  .desktop-nav {
+    width: 220px;
+  }
 }
 
 @media (max-width: 1200px) {
