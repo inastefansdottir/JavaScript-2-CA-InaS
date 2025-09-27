@@ -142,3 +142,10 @@ button.following-button {
     margin: 20px 0;
   }
 }
+
+@media (min-width: 760px) {
+  /* user profile */
+  .user-profile-header {
+    display: none;
+  }
+}

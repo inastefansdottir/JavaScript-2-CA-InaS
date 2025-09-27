@@ -4,18 +4,18 @@
 
 @media (max-width: 760px) {
   header {
+    background-color: var(--primary-light);
     position: sticky;
     top: 0;
+    z-index: 999;
   }
 
   .mobile-header {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background: var(--primary-light);
     padding: 20px 15px;
     border-bottom: solid 1px var(--secondary-light);
-    z-index: 10;
   }
 
   .cat-logo {

@@ -1,6 +1,12 @@
 <aside class="desktop-nav">
-  <img src="/images/petify-logo-dark.svg" class="full-logo" alt="Petify logo" />
-  <img src="/images/petify-cat-dark.svg" class="cat-logo" alt="Petify logo" />
+  <div class="logo-wrapper">
+    <img src="/images/petify-cat-dark.svg" class="cat-logo" alt="Petify logo" />
+    <img
+      src="/images/petify-logo-text.svg"
+      class="text-logo"
+      alt="Petify logo"
+    />
+  </div>
 
   <ul>
     <li class="desktop-list <%= currentPage === 'home' ? 'current' : '' %>">
@@ -41,4 +47,17 @@
       </a>
     </li>
   </ul>
+</aside>
+
+<aside class="desktop-search-panel" id="desktopSearchPanel">
+  <span class="search-text">Search</span>
+  <div class="search-header">
+    <input
+      type="text"
+      class="desktop-search-input"
+      placeholder="Search"
+      id="desktopSearchInput"
+    />
+  </div>
+  <div class="search-results hidden" id="desktopSearchResults"></div>
 </aside>
