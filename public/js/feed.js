@@ -1,5 +1,5 @@
 import { protectPage } from "./auth.js";
-import { fetchPosts } from "./api.js";
+import { fetchFollowingPosts } from "./api.js";
 import { initPawButton } from "./paw-button.js";
 import { shareFunction } from "./share.js";
 import { getLoggedInUser } from "./utils.js";
@@ -71,7 +71,7 @@ function generatePosts(posts) {
 }
 
 async function main() {
-  const posts = await fetchPosts();
+  const posts = await fetchFollowingPosts();
   generatePosts(posts);
 }
 

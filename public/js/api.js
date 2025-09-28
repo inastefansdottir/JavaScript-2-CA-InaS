@@ -92,6 +92,26 @@ export async function fetchPosts() {
   }
 }
 
+export async function fetchFollowingPosts() {
+  try {
+    const accessToken = getToken("accessToken");
+    const fetchOptions = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "X-Noroff-API-Key": NOROFF_API_KEY
+      }
+    };
+    const response = await fetch(
+      `${POSTS_URL}/following?_author=true&_comments=true&_reactions=true`,
+      fetchOptions
+    );
+    const json = await response.json();
+    return json.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getPostById(postId) {
   try {
     const accessToken = getToken("accessToken");

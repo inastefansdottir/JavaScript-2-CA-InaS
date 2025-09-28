@@ -6,6 +6,7 @@ import {
 } from "./api.js";
 import { protectPage } from "./auth.js";
 import { backButton } from "./back-button.js";
+import { getLoggedInUser } from "./utils.js";
 
 protectPage();
 
@@ -96,6 +97,7 @@ async function loadPost(postId) {
     const commentsSection = document.getElementById("commentsSection");
 
     if (post.comments && post.comments.length > 0) {
+      const profile = getLoggedInUser();
       post.comments.forEach(comment => {
         const commentElement = document.createElement("div");
         commentElement.classList.add("comment");
@@ -116,19 +118,24 @@ async function loadPost(postId) {
         `;
 
         commentsSection.appendChild(commentElement);
-      });
 
-      // attach delete handlers
-      commentsSection.querySelectorAll(".delete-comment").forEach(btn => {
-        btn.addEventListener("click", async () => {
-          const commentId = btn.dataset.commentId;
-          if (confirm("Are you sure you want to delte this comment?")) {
-            const success = await deleteComment(postId, commentId);
-            if (success) {
-              btn.closest(".comment").remove(); // remove from DOM
+        // attach delete handlers
+        const deleteCommentBtn =
+          commentElement.querySelector(".delete-comment");
+        if (profile.name === comment.author?.name) {
+          deleteCommentBtn.addEventListener("click", async () => {
+            const commentId = deleteCommentBtn.dataset.commentId;
+            if (confirm("Are you sure you want to delete this comment?")) {
+              const success = await deleteComment(postId, commentId);
+              if (success) {
+                commentElement.remove(); // remove from DOM
+              }
             }
-          }
-        });
+          });
+        } else {
+          // hide delete buttons if not author
+          deleteCommentBtn.style.display = "none";
+        }
       });
     }
   } catch (error) {
