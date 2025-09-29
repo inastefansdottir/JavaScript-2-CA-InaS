@@ -1,5 +1,5 @@
 import { protectPage } from "./auth.js";
-import { fetchFollowingPosts } from "./api.js";
+import { fetchFollowingPosts, getProfilePosts, getPostById } from "./api.js";
 import { initPawButton } from "./paw-button.js";
 import { shareFunction } from "./share.js";
 import { getLoggedInUser } from "./utils.js";
@@ -71,8 +71,21 @@ function generatePosts(posts) {
 }
 
 async function main() {
-  const posts = await fetchFollowingPosts();
-  generatePosts(posts);
+  const followingPosts = await fetchFollowingPosts();
+  const profile = getLoggedInUser();
+
+  // This is needed to get the reactors response from the api
+  const userPosts = await getProfilePosts(profile.name);
+  const detailedUserPosts = await Promise.all(
+    userPosts.map(post => getPostById(post.id))
+  );
+
+  const allPosts = [...followingPosts, ...detailedUserPosts];
+
+  // Sort posts by created date, newest first
+  allPosts.sort((a, b) => new Date(b.created) - new Date(a.created));
+
+  generatePosts(allPosts);
 }
 
 main();
