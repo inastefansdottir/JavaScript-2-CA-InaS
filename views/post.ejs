@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/global.css" />
-    <link rel="stylesheet" href="/css/post-thumbnail.css" />
-    <link rel="stylesheet" href="/css/desktop-navbar.css" />
+    <%- include("components/head", { title, description, stylesheets:
+    ['/css/post-thumbnail.css', '/css/desktop-navbar.css'] }) %>
     <script type="module" src="/js/load-post.js"></script>
   </head>
   <body>

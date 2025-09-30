@@ -2,16 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/edit-profile.css" />
-    <%- include("components/links") %>
+    <%- include("components/head", { title, description, stylesheets:
+    ['/css/edit-profile.css', '/css/desktop-navbar.css',
+    '/css/mobile-header.css', '/css/mobile-navbar.css'] }) %>
+    <script type="module" src="/js/search.js"></script>
     <script type="module" src="/js/edit-profile.js"></script>
   </head>
   <body>
     <header><%- include("components/desktop-side-panel") %></header>
     <main>
-      <h1 class="title">Edit Profile</h1>
+      <h1 class="page-title">Edit Profile</h1>
       <img
         src=""
         alt="Profile picture"

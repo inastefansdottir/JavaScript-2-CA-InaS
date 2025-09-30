@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/profile.css" />
-    <%- include("components/links") %>
+    <%- include("components/head", ({ title: title, description: description,
+    stylesheets: ['/css/profile.css', '/css/desktop-navbar.css',
+    '/css/mobile-header.css', '/css/mobile-navbar.css'] })) %>
+    <script type="module" src="/js/search.js"></script>
     <script type="module" src="/js/personal-profile.js"></script>
   </head>
   <body>
@@ -48,6 +47,8 @@
       </div>
 
       <div class="posts-container" id="postsContainer"></div>
+
+      <div class="no-posts-message" id="noPostsMessage"></div>
 
       <div class="bottom-spacing"></div>
     </main>

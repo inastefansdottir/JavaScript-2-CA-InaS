@@ -113,6 +113,30 @@ button.following-button {
   font-size: 20px;
 }
 
+/* error message */
+.no-posts-message {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-self: center;
+  gap: 20px;
+  margin: 20px 15px 150px 15px;
+}
+
+.no-posts-message span {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.no-posts-message p {
+  max-width: 500px;
+  align-self: center;
+}
+
+.button {
+  align-self: center;
+}
+
 @media (max-width: 920px) and (min-width: 760px) {
   main {
     margin-left: 72px !important;

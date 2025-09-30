@@ -96,4 +96,12 @@
   .footer-fix {
     height: 100px;
   }
+
+  .navigation .indicator {
+    display: none;
+  }
+
+  .navigation ul li.active ~ .indicator {
+    display: block;
+  }
 }

@@ -5,7 +5,7 @@
     ['/css/post-thumbnail.css', '/css/feed.css', '/css/desktop-navbar.css',
     '/css/mobile-header.css', '/css/mobile-navbar.css'] }) %>
     <script type="module" src="/js/search.js"></script>
-    <script type="module" src="/js/feed.js"></script>
+    <script type="module" src="/js/discover.js"></script>
   </head>
   <body>
     <header>
@@ -13,7 +13,17 @@
       include("components/mobile-header") %>
     </header>
 
-    <main id="displayContainer"></main>
+    <main>
+      <div class="discover-message">
+        <h1 class="page-title">Discover</h1>
+        <p class="message">
+          Here you can explore posts from the entire Petify community. Check out
+          adorable pets, follow new friends, and get inspired to share your own
+          furry moments!
+        </p>
+      </div>
+      <div id="displayContainer"></div>
+    </main>
     <%- include("components/mobile-navbar") %>
   </body>
 </html>

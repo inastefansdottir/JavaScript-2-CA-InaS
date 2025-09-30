@@ -12,10 +12,21 @@
 
   .mobile-header {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px 15px;
+    padding: 15px;
     border-bottom: solid 1px var(--secondary-light);
+  }
+
+  .discover-link {
+    color: var(--primary-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .discover-icon {
+    font-size: 48px;
   }
 
   .cat-logo {

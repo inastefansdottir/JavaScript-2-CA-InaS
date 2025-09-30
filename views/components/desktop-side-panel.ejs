@@ -46,6 +46,15 @@
         <span class="text">Profile</span>
       </a>
     </li>
+    <li class="desktop-list <%= currentPage === 'discover' ? 'current' : '' %>">
+      <a href="/discover" class="flex">
+        <ion-icon
+          class="icon discover-icon"
+          name="<%= currentPage === 'discover' ? 'compass' : 'compass-outline' %>"
+        ></ion-icon>
+        <span class="text">Discover</span>
+      </a>
+    </li>
   </ul>
 </aside>
 

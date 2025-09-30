@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/global.css" />
-    <link rel="stylesheet" href="/css/login-signup.css" />
+    <%- include("components/head", { title, description, stylesheets:
+    ['/css/login-signup.css', '/css/desktop-navbar.css',
+    '/css/mobile-header.css', '/css/mobile-navbar.css'] }) %>
     <script type="module" src="/js/register.js"></script>
   </head>
   <body class="dark-background">

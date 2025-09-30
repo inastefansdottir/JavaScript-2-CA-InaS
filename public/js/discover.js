@@ -1,5 +1,5 @@
 import { protectPage } from "./auth.js";
-import { fetchFollowingPosts, getProfilePosts, getPostById } from "./api.js";
+import { fetchPosts } from "./api.js";
 import { initPawButton } from "./paw-button.js";
 import { shareFunction } from "./share.js";
 import { getLoggedInUser } from "./utils.js";
@@ -9,23 +9,6 @@ protectPage();
 let displayContainer = document.getElementById("displayContainer");
 
 function generatePosts(posts) {
-  if (posts.length === 0) {
-    const div = document.createElement("div");
-    div.classList.add("no-posts-message");
-
-    div.innerHTML = `
-      <h1 class="welcome-message">Welcome to Petify!</h1>
-      <p class="message">Your feed is empty because you're not following anyone yet and haven't posted anything.</p>
-      <div class="button-wrapper">
-        <a href="/posts/create" class="button">Create Your First Post</a>
-        <a href="/discover" class="button discover-button">Discover Posts</a>
-      </div>
-      <p class="small-text">or search for users and posts</p>
-    `;
-
-    displayContainer.appendChild(div);
-  }
-
   posts.forEach(post => {
     const thumbnailHtml = `
         <article class="post-thumbnail">
@@ -88,21 +71,8 @@ function generatePosts(posts) {
 }
 
 async function main() {
-  const followingPosts = await fetchFollowingPosts();
-  const profile = getLoggedInUser();
-
-  // This is needed to get the reactors response from the api
-  const userPosts = await getProfilePosts(profile.name);
-  const detailedUserPosts = await Promise.all(
-    userPosts.map(post => getPostById(post.id))
-  );
-
-  const allPosts = [...followingPosts, ...detailedUserPosts];
-
-  // Sort posts by created date, newest first
-  allPosts.sort((a, b) => new Date(b.created) - new Date(a.created));
-
-  generatePosts(allPosts);
+  const posts = await fetchPosts();
+  generatePosts(posts);
 }
 
 main();

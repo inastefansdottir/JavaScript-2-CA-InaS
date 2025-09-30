@@ -1,0 +1,51 @@
+/* feed */
+.no-posts-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+  margin: 0 15px;
+}
+
+.welcome-message {
+  font-weight: 700;
+}
+
+.message {
+  text-align: center;
+  font-size: 18px;
+}
+
+.button-wrapper {
+  margin-top: 10px;
+}
+
+.discover-button {
+  background-color: var(--accent-color);
+}
+
+.small-text {
+  margin-bottom: 150px;
+}
+
+/* discover */
+.discover-message {
+  text-align: center;
+  margin: 100px 15px;
+}
+
+.page-title {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 425px) {
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}

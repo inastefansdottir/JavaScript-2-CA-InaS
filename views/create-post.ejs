@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/create-post.css" />
+    <%- include("components/head", { title, description, stylesheets:
+    ['/css/create-post.css', '/css/desktop-navbar.css',
+    '/css/mobile-header.css', '/css/mobile-navbar.css'] }) %>
+    <script type="module" src="/js/search.js"></script>
     <script type="module" src="/js/create-post.js"></script>
-    <%- include("components/links") %>
   </head>
   <body>
     <header>
-      <%- include("components/desktop-side-panel") %><%-
+      <%- include("components/desktop-side-panel") %> <%-
       include("components/mobile-header") %>
     </header>
 
