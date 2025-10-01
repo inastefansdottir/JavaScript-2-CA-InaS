@@ -1,3 +1,7 @@
+/**
+ * Initialize back button functionality
+ * Adds click event to element with id "backButton" to go to the previous page
+ */
 export function backButton() {
   // Event listener for back button
   const backButton = document.getElementById("backButton");

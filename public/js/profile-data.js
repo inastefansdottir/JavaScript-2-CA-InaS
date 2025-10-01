@@ -1,13 +1,21 @@
 import { getProfile } from "./api.js";
 
+// Profile-related DOM elements
 const profilePicture = document.getElementById("profilePicture");
 const username = document.getElementById("username");
 const followingCount = document.getElementById("followingCount");
 const followersCount = document.getElementById("followersCount");
 const postsCount = document.getElementById("postsCount");
 
+// Container for user's posts
 const postsContainer = document.getElementById("postsContainer");
 
+/**
+ * Fetch and display profile information for a given user
+ * Updates the profile section with the user's avatar, name, and stats
+ * @param {string} name - The username of the profile to load
+ * @returns {Promise<Object|undefined>} Resolves to the profile object if successful, otherwise undefined
+ */
 export async function initProfileData(name) {
   try {
     const profile = await getProfile(name);

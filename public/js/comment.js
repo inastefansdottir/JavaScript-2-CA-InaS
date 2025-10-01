@@ -1,57 +1,68 @@
 import { addComment } from "./api.js";
 import { getLoggedInUser } from "./utils.js";
 
+/**
+ * Initialize comment forms on the page
+ * Handles form submission, sends comment to API, and updates the DOM
+ * @param {string} postId - ID of the post to add comments to
+ */
 export function initCommentForm(postId) {
-  const form = document.getElementById("addCommentForm");
-  const commentInput = document.getElementById("writeComment");
+  const forms = document.querySelectorAll(".add-comment-form");
+  const commentInputs = document.querySelectorAll(".write-comment");
   const commentsSection = document.getElementById("commentsSection");
 
-  if (!form || !commentInput || !commentsSection) {
+  if (forms.length === 0 || commentInputs.length === 0 || !commentsSection) {
     console.warn("Comment form, input, or comments section not found.");
     return;
   }
 
-  form.addEventListener("submit", async e => {
-    e.preventDefault();
+  forms.forEach((form, index) => {
+    const commentInput = commentInputs[index];
 
-    const commentText = commentInput.value.trim();
-    if (!commentText) return;
+    // Listen for form submission
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
 
-    const user = getLoggedInUser();
+      const commentText = commentInput.value.trim();
+      if (!commentText) return; // Ignore empty comments
 
-    try {
-      const newComment = await addComment(postId, commentText);
+      const user = getLoggedInUser(); // Current logged-in user
 
-      if (newComment) {
-        const commentElement = document.createElement("div");
-        commentElement.classList.add("comment");
-        commentElement.innerHTML = `
-          <a href="/profile/${user.name}">
-          <img
-            src="${user.avatarUrl}"
-            alt="user profile picture"
-            class="small-profile-icon align-self"
-          />
-          </a>
-          <div class="text-wrapper">
-            <strong class="description-name">${user.name}</strong> 
-            <p class="body-text">${newComment.body}</p>
-          </div>
-        `;
+      try {
+        const newComment = await addComment(postId, commentText); // send to API
 
-        // Add the new comment to the bottom
-        commentsSection.appendChild(commentElement);
-        commentInput.value = "";
+        if (newComment) {
+          // Create DOM element for the new comment
+          const commentElement = document.createElement("div");
+          commentElement.classList.add("comment");
+          commentElement.innerHTML = `
+            <a href="/profile/${user.name}">
+              <img
+                src="${user.avatarUrl}"
+                alt="user profile picture"
+                class="small-profile-icon align-self"
+              />
+            </a>
+            <div class="text-wrapper">
+              <strong class="description-name">${user.name}</strong> 
+              <p class="body-text">${newComment.body}</p>
+            </div>
+          `;
 
-        // Update the comment count
-        const commentCountSpan = document.getElementById("commentCountSpan");
-        const currentCount = parseInt(commentCountSpan.textContent) || 0;
-        commentCountSpan.textContent = currentCount + 1;
+          // Add the new comment to the bottom
+          commentsSection.appendChild(commentElement);
+          commentInput.value = "";
+
+          // Update the comment count
+          const commentCountSpan = document.getElementById("commentCountSpan");
+          if (commentCountSpan) {
+            const currentCount = parseInt(commentCountSpan.textContent) || 0;
+            commentCountSpan.textContent = currentCount + 1;
+          }
+        }
+      } catch (error) {
+        console.error("Error submitting comment:", error);
       }
-    } catch (error) {
-      console.error("Error submitting comment:", error);
-    }
+    });
   });
-
-  console.log(getLoggedInUser());
 }

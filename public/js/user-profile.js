@@ -9,8 +9,16 @@ import {
 import { backButton } from "./back-button.js";
 import { getLoggedInUser } from "./utils.js";
 
-protectPage();
+protectPage(); // Only logged-in users can access this page
 
+/**
+ * Initializes the user profile page
+ * - Loads profile data and posts
+ * - Sets up the follow/unfollow button
+ * - Attaches a back button event
+ * @function main
+ * @returns {Promise<void>}
+ */
 async function main() {
   const pathParts = window.location.pathname.split("/");
   const name = pathParts[2]; // "/profile/name" > ["", "profile", "name"]

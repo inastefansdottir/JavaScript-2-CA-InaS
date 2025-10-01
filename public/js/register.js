@@ -1,26 +1,34 @@
 import { redirectLoggedIn } from "./auth.js";
 import { registerUser } from "./api.js";
 
+// Redirect users who are already logged in (prevents duplicate registration)
 redirectLoggedIn();
 
+// Form + input fields
 const signupForm = document.getElementById("signupForm");
 
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 
+// Error message containers
 const nameError = document.getElementById("nameError");
 const emailError = document.getElementById("emailError");
 const passwordError = document.getElementById("passwordError");
 const errorMsg = document.getElementById("errorMessage");
 
-// Live error clearing
+/**
+ * Clear the error state for a given field
+ * @param {HTMLInputElement} inputElement - The input to reset
+ * @param {HTMLElement} errorElement - The error message element to clear
+ */
 function clearFieldError(inputElement, errorElement) {
   inputElement.classList.remove("error");
   errorElement.textContent = "";
   errorMsg.innerHTML = "";
 }
 
+// Live validation clearing
 nameInput.addEventListener("input", () =>
   clearFieldError(nameInput, nameError)
 );
@@ -33,6 +41,11 @@ passwordInput.addEventListener("input", () =>
   clearFieldError(passwordInput, passwordError)
 );
 
+/**
+ * Handles the signup form submission
+ * Validates inputs before calling the API
+ * @param {SubmitEvent} event - The form submit event
+ */
 async function onSignupFormSubmit(event) {
   event.preventDefault();
 
@@ -121,4 +134,5 @@ async function onSignupFormSubmit(event) {
   }
 }
 
+// Attach submit handler
 signupForm.addEventListener("submit", onSignupFormSubmit);

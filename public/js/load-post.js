@@ -6,17 +6,22 @@ import { shareFunction } from "./share.js";
 import { backButton } from "./back-button.js";
 import { getLoggedInUser } from "./utils.js";
 
-protectPage();
+protectPage(); // Only logged-in users can access this page
 
 let displayContainer = document.getElementById("displayContainer");
 const postId = displayContainer.dataset.postId;
 
+// Check if postId exists
 if (!postId) {
   displayContainer.innerHTML = "<p>Missing author name or post ID in URL.</p>";
 } else {
   loadPost(postId);
 }
 
+/**
+ * Load and render a single post by ID
+ * @param {string} postId - ID of the post to load
+ */
 async function loadPost(postId) {
   try {
     const post = await getPostById(postId);
@@ -26,6 +31,7 @@ async function loadPost(postId) {
       throw new Error("Post not found");
     }
 
+    // HTML structure for the post
     const postHtml = `
         <article class="post-thumbnail">
             <div class="divider"></div>
@@ -81,7 +87,6 @@ async function loadPost(postId) {
         `;
 
     displayContainer.innerHTML += postHtml;
-    console.log(displayContainer);
 
     // Only show edit button if logged in user is the author
     const profile = getLoggedInUser();
@@ -92,13 +97,15 @@ async function loadPost(postId) {
       linkToProfile.href = "/profile";
     }
 
+    // Initialize back button functionality
     backButton();
 
+    // Initialize like (paw) button
     const likeButton = document.querySelector(".paw-button");
     const likeCountSpan = likeButton.nextElementSibling;
-
     initPawButton(likeButton, likeCountSpan, postId, post.reactions);
 
+    // Initialize share button
     const shareButton = document.querySelector(".share-button");
     shareFunction(shareButton);
 
@@ -136,8 +143,10 @@ async function loadPost(postId) {
   }
 }
 
+// Initialize comment form for this post
 initCommentForm(postId);
 
+// Reload page if browser restored from cache (fix back-button issues)
 window.addEventListener("pageshow", event => {
   if (event.persisted) {
     window.location.reload();

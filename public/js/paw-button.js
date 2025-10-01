@@ -1,8 +1,15 @@
 import { getUser } from "./utils.js";
 import { toggleReaction } from "./api.js";
 
+/**
+ * Initialize paw (like) button functionality for a post
+ * @param {HTMLElement} likeButton - The button element
+ * @param {HTMLElement} likeCountSpan - Span element showing total reactions
+ * @param {string} postId - ID of the post
+ * @param {Array} reactions - Array of reactions for this post
+ */
 export function initPawButton(likeButton, likeCountSpan, postId, reactions) {
-  const currentUser = getUser();
+  const currentUser = getUser(); // Currently logged-in user
 
   // Total reactions (all symbols)
   let totalReactions = reactions.reduce((sum, r) => sum + r.count, 0);

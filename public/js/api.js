@@ -8,6 +8,11 @@ const PROFILE_URL = `${API_BASE_URL}/social/profiles`;
 
 const NOROFF_API_KEY = "d7e6b3d7-dfed-4144-a72f-17de3a3e8a1c";
 
+/**
+ * Register a new user
+ * @param {object} userDetails - {name, email, password}
+ * @returns {Promise<object>} Status and response from API
+ */
 export async function registerUser(userDetails) {
   try {
     const fetchOptions = {
@@ -31,6 +36,11 @@ export async function registerUser(userDetails) {
   }
 }
 
+/**
+ * Login a user and save token + user info
+ * @param {object} - {email, password}
+ * @returns {Promise<object>} API response
+ */
 export async function loginUser({ email, password }) {
   try {
     const fetchOptions = {
@@ -72,6 +82,10 @@ export async function loginUser({ email, password }) {
   }
 }
 
+/**
+ * Fetch all posts with authors, comments and reactions
+ * @returns {Promise<Array>} Array of posts
+ */
 export async function fetchPosts() {
   try {
     const accessToken = getToken("accessToken");
@@ -92,6 +106,10 @@ export async function fetchPosts() {
   }
 }
 
+/**
+ * Fetch posts from followed users
+ * @returns {Promise<Array>} Array of posts
+ */
 export async function fetchFollowingPosts() {
   try {
     const accessToken = getToken("accessToken");
@@ -112,6 +130,11 @@ export async function fetchFollowingPosts() {
   }
 }
 
+/**
+ * Get a single post by ID
+ * @param {string} postId
+ * @returns {Promise<Array>} Post data
+ */
 export async function getPostById(postId) {
   try {
     const accessToken = getToken("accessToken");
@@ -138,6 +161,11 @@ export async function getPostById(postId) {
   }
 }
 
+/**
+ * Create a new post
+ * @param {Object} postData
+ * @returns {Promise<Object|null>} Created post data or null
+ */
 export async function createPost(postData) {
   try {
     const accessToken = getToken("accessToken");
@@ -166,6 +194,12 @@ export async function createPost(postData) {
   }
 }
 
+/**
+ * React to a post (like, heart, paw, etc.)
+ * @param {string} postId
+ * @param {string} symbol - Reaction symbol
+ * @returns {Promise<Object>} Updated post data
+ */
 export async function toggleReaction(postId, symbol) {
   try {
     const accessToken = getToken("accessToken");
@@ -191,6 +225,13 @@ export async function toggleReaction(postId, symbol) {
   }
 }
 
+/**
+ * Add a comment to a post
+ * @param {string} postId
+ * @param {string} comment - Comment text
+ * @param {string|null} replyToId - Optional comment ID if replying
+ * @returns {Promise<Object>} Created comment data
+ */
 export async function addComment(postId, comment, replyToId = null) {
   try {
     const accessToken = getToken("accessToken");
@@ -223,6 +264,11 @@ export async function addComment(postId, comment, replyToId = null) {
   }
 }
 
+/**
+ * Get a profile by username
+ * @param {string} name
+ * @returns {Promise<Object>} Profile data
+ */
 export async function getProfile(name) {
   try {
     const accessToken = getToken("accessToken");
@@ -244,6 +290,11 @@ export async function getProfile(name) {
   }
 }
 
+/**
+ * Get all posts for a specific profile
+ * @param {string} name - Profile username
+ * @returns {Promise<Array>} Array of posts
+ */
 export async function getProfilePosts(name) {
   try {
     const accessToken = getToken("accessToken");
@@ -265,6 +316,12 @@ export async function getProfilePosts(name) {
   }
 }
 
+/**
+ * Updated profile avatar image
+ * @param {string} name - Profile username
+ * @param {string} imageUrl - New avatar URL
+ * @returns {Promise<Object>} Updated profile data
+ */
 export async function updateAvatar(name, imageUrl) {
   try {
     const accessToken = getToken("accessToken");
@@ -296,6 +353,12 @@ export async function updateAvatar(name, imageUrl) {
   }
 }
 
+/**
+ * Update the text of a post
+ * @param {string} postId
+ * @param {string} bodytext - New post text
+ * @returns {Promise<Object>} Updated post data
+ */
 export async function updatePostDescription(postId, bodytext) {
   try {
     const accessToken = getToken("accessToken");
@@ -322,6 +385,11 @@ export async function updatePostDescription(postId, bodytext) {
   }
 }
 
+/**
+ * Follow profile
+ * @param {string} profileName
+ * @returns {Promise<Object>} Updated profile data
+ */
 export async function followProfile(profileName) {
   try {
     const accessToken = getToken("accessToken");
@@ -349,6 +417,11 @@ export async function followProfile(profileName) {
   }
 }
 
+/**
+ * Unfollow a profile
+ * @param {string} profileName
+ * @returns {Promise<Object>} Updated profile data
+ */
 export async function unfollowProfile(profileName) {
   try {
     const accessToken = getToken("accessToken");
@@ -376,6 +449,11 @@ export async function unfollowProfile(profileName) {
   }
 }
 
+/**
+ * Delete a post
+ * @param {string} postId
+ * @returns {Promise<Boolean>} True if deleted successfully
+ */
 export async function deletePost(postId) {
   try {
     const accessToken = getToken("accessToken");
@@ -400,6 +478,12 @@ export async function deletePost(postId) {
   }
 }
 
+/**
+ * Delete a comment from a post
+ * @param {string} postId
+ * @param {string} commentId
+ * @returns {Promise<boolean>} True if deleted successfully
+ */
 export async function deleteComment(postId, commentId) {
   try {
     const accessToken = getToken("accessToken");
@@ -427,6 +511,11 @@ export async function deleteComment(postId, commentId) {
   }
 }
 
+/**
+ * Search posts by query
+ * @param {string} query
+ * @returns {Promise<Array>} Array of matching posts
+ */
 export async function searchPosts(query) {
   try {
     const accessToken = getToken("accessToken");
@@ -455,6 +544,11 @@ export async function searchPosts(query) {
   }
 }
 
+/**
+ * Search profiles by query
+ * @param {string} query
+ * @returns {Promise<Array>} Array of matching profiles
+ */
 export async function searchProfiles(query) {
   try {
     const accessToken = getToken("accessToken");

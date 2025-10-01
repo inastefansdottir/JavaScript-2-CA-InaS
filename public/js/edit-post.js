@@ -8,17 +8,22 @@ import { protectPage } from "./auth.js";
 import { backButton } from "./back-button.js";
 import { getLoggedInUser } from "./utils.js";
 
-protectPage();
+protectPage(); // Only logged-in users can access this page
 
 let displayContainer = document.getElementById("displayContainer");
 const postId = displayContainer.dataset.postId;
 
+// Show error if there is no post ID
 if (!postId) {
   displayContainer.innerHTML = "<p>Missing post ID in URL.</p>";
 } else {
   loadPost(postId);
 }
 
+/**
+ * Load a single post and render it with editable description and comments
+ * @param {string} postId - The ID of the post to load
+ */
 async function loadPost(postId) {
   try {
     const post = await getPostById(postId);
@@ -64,7 +69,7 @@ async function loadPost(postId) {
     displayContainer.innerHTML += postHtml;
     console.log(post);
 
-    backButton();
+    backButton(); // Initialize back button
 
     // Delete post
     const deleteBtn = document.getElementById("deletePostBtn");
@@ -79,18 +84,21 @@ async function loadPost(postId) {
       }
     });
 
-    // Save description
-    const saveBtn = document.getElementById("postBtn");
+    // Save description buttons (desktop + mobile)
+    const saveBtns = document.querySelectorAll(".save-button");
 
-    saveBtn.addEventListener("click", async () => {
-      const newBody = document.getElementById("body").value.trim();
-      if (!newBody) return alert("Description cannot be empty");
+    saveBtns.forEach(btn => {
+      btn.addEventListener("click", async e => {
+        e.preventDefault(); // prevent default submission
+        const newBody = document.getElementById("body").value.trim();
+        if (!newBody) return alert("Description cannot be empty");
 
-      const updated = await updatePostDescription(postId, newBody);
-      if (updated) {
-        alert("Post updated!");
-        window.location.href = `/posts/${postId}`;
-      }
+        const updated = await updatePostDescription(postId, newBody);
+        if (updated) {
+          alert("Post updated!");
+          window.location.href = `/posts/${postId}`;
+        }
+      });
     });
 
     // Render each comment one by one
@@ -119,7 +127,7 @@ async function loadPost(postId) {
 
         commentsSection.appendChild(commentElement);
 
-        // attach delete handlers
+        // Delete comment if current user is author
         const deleteCommentBtn =
           commentElement.querySelector(".delete-comment");
         if (profile.name === comment.author?.name) {

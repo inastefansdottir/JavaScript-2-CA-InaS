@@ -2,13 +2,15 @@ import { protectPage } from "./auth.js";
 import { createPost } from "./api.js";
 import { getUser } from "./utils.js";
 
-protectPage();
+protectPage(); // Only logged-in users can access this page
 
+// Form and input elements
 const createForm = document.getElementById("form");
 const altInput = document.getElementById("alt");
 const bodyInput = document.getElementById("body");
 const bodyCounter = document.getElementById("bodyCounter");
 
+// Error elements
 const altError = document.getElementById("altError");
 const bodyError = document.getElementById("bodyError");
 const imageError = document.getElementById("imageError");

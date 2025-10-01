@@ -5,7 +5,7 @@ router.get("/login", (req, res) => {
   res.status(200).render("login", {
     title: "Log In - Petify",
     description:
-      "Log in to Petify Connect with fellow pet lovers and share your furry friend's best moments."
+      "Log in to Petify. Connect with fellow pet lovers and share your furry friend's best moments."
   });
 });
 

@@ -4,11 +4,16 @@ import { initPawButton } from "./paw-button.js";
 import { shareFunction } from "./share.js";
 import { getLoggedInUser } from "./utils.js";
 
-protectPage();
+protectPage(); // Only logged-in users can access this page
 
 let displayContainer = document.getElementById("displayContainer");
 
+/**
+ * Render posts on the feed page
+ * @param {Array} posts - Array of post objects to display
+ */
 function generatePosts(posts) {
+  // Show welcome message if no posts
   if (posts.length === 0) {
     const div = document.createElement("div");
     div.classList.add("no-posts-message");
@@ -26,6 +31,7 @@ function generatePosts(posts) {
     displayContainer.appendChild(div);
   }
 
+  // Render each post thumbnail
   posts.forEach(post => {
     const thumbnailHtml = `
         <article class="post-thumbnail">
@@ -68,9 +74,10 @@ function generatePosts(posts) {
     displayContainer.insertAdjacentHTML("beforeend", thumbnailHtml);
 
     const postElement = displayContainer.lastElementChild;
-
     const profile = getLoggedInUser();
     const linkToProfile = postElement.querySelector(".profile-section-feed");
+
+    // Redirect to own profile if this post belongs to current user
     if (profile.name === post.author?.name) {
       linkToProfile.href = "/profile";
     }
@@ -87,6 +94,9 @@ function generatePosts(posts) {
   });
 }
 
+/**
+ * Main function to fetch and display feed posts
+ */
 async function main() {
   const followingPosts = await fetchFollowingPosts();
   const profile = getLoggedInUser();
@@ -107,6 +117,7 @@ async function main() {
 
 main();
 
+// Reload page if browser restored from cache (fix back-button issues)
 window.addEventListener("pageshow", event => {
   if (event.persisted) {
     window.location.reload();

@@ -4,10 +4,14 @@ import { initPawButton } from "./paw-button.js";
 import { shareFunction } from "./share.js";
 import { getLoggedInUser } from "./utils.js";
 
-protectPage();
+protectPage(); // Only logged-in users can see the feed
 
 let displayContainer = document.getElementById("displayContainer");
 
+/**
+ * Render posts to the feed
+ * @param {Array} posts - Array of posts object from API
+ */
 function generatePosts(posts) {
   posts.forEach(post => {
     const thumbnailHtml = `
@@ -48,11 +52,13 @@ function generatePosts(posts) {
         </article>
         `;
 
+    // Add post to DOM
     displayContainer.insertAdjacentHTML("beforeend", thumbnailHtml);
 
     const postElement = displayContainer.lastElementChild;
-
     const profile = getLoggedInUser();
+
+    // If the post belongs to the logged-in user, redirect profile link to own profile
     const linkToProfile = postElement.querySelector(".profile-section-feed");
     if (profile.name === post.author?.name) {
       linkToProfile.href = "/profile";
@@ -70,6 +76,9 @@ function generatePosts(posts) {
   });
 }
 
+/**
+ * Fetch posts from API and render them
+ */
 async function main() {
   const posts = await fetchPosts();
   generatePosts(posts);
@@ -77,6 +86,7 @@ async function main() {
 
 main();
 
+// Reload page if coming back from, browser back button
 window.addEventListener("pageshow", event => {
   if (event.persisted) {
     window.location.reload();
